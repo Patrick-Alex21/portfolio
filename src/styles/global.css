@@ -5,6 +5,23 @@
 
 @import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Syne:wght@400;500;600;700;800&family=JetBrains+Mono:wght@300;400;500&display=swap');
 
+/* Add this to global.css */
+* {
+  cursor: none !important;
+}
+
+/* Ensure interactive elements don't try to override it */
+a, 
+button, 
+.project-card, 
+.filter-btn, 
+.trait, 
+.tool-chip, 
+:global(.modal-tag), 
+.exp-item {
+  cursor: none !important;
+}
+
 :root {
   --black:       #050810;
   --deep:        #070c15;
@@ -14,11 +31,11 @@
   --border-hi:   #253050;
   --text:        #f5f0e8;
   --text-muted:  #9aa3bb;
+  --click:       #6a8cef;
   --text-dim:    #4a5470;
   --accent:      #00e5ff;
   --accent-dim:  #009eb3;
   --accent-glow: rgba(0,229,255,0.10);
-  --red:         #ff3b3b;
   --font-display: 'Bebas Neue', sans-serif;
   --font-body:    'Syne', sans-serif;
   --font-mono:    'JetBrains Mono', monospace;
@@ -52,6 +69,7 @@ body {
   z-index: 9999;
   mix-blend-mode: difference;
 }
+
 .cursor-dot {
   width: 8px;
   height: 8px;
@@ -69,11 +87,22 @@ body {
   transition: width 0.25s ease, height 0.25s ease, opacity 0.25s ease;
   opacity: 0.5;
 }
+
+.cursor-clicking .cursor-ring {
+  transform: translate(-50%, -50%) scale(0.8); /* Shrinks on click */
+  border-color: var(--click); /* Flashes white */
+  background: var(--accent-glow);
+  transition: transform 0.1s ease;
+}
+
 body:has(a:hover) .cursor-ring,
-body:has(button:hover) .cursor-ring {
-  width: 56px;
-  height: 56px;
+body:has(button:hover) .cursor-ring,
+body:has(.project-card:hover) .cursor-ring{
+  width: 54px;
+  height: 54px;
   opacity: 1;
+  border-width: 2px;
+  background: var(--accent-glow);
 }
 
 /* ── Typography ── */
@@ -104,7 +133,7 @@ img { display: block; max-width: 100%; }
 /* ── Section Label ── */
 .section-label {
   font-family: var(--font-mono);
-  font-size:  px;
+  font-size: 11px;
   letter-spacing: 0.2em;
   text-transform: uppercase;
   color: var(--accent);
@@ -123,7 +152,7 @@ img { display: block; max-width: 100%; }
 /* ── Section Title ── */
 .section-title {
   font-family: var(--font-display);
-  font-size: clamp(40px, 7vw, 76px);
+  font-size: clamp(48px, 7vw, 88px);
   color: var(--text);
   line-height: 0.95;
   margin-bottom: 24px;
@@ -148,15 +177,32 @@ img { display: block; max-width: 100%; }
 .mono        { font-family: var(--font-mono); }
 
 /* ── Reveal Animation ── */
+/* In your global.css */
+
 .reveal {
   opacity: 0;
-  transform: translateY(30px);
-  transition: opacity 0.7s ease, transform 0.7s ease;
+  transform: translateY(40px); /* Start position (down) */
+  transition: 
+    opacity 0.8s ease-out, 
+    transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: transform, opacity;
 }
-.reveal.visible {
-  opacity: 1;
-  transform: translateY(0);
-}
+
+/* When the section is "Active" */
+  .reveal.spawned {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  .reveal.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  .hero.reveal {
+    opacity: 1 !important;
+    transform: translateY(0) !important;
+  }
 
 @media (max-width: 768px) {
   .container { padding: 0 24px; }

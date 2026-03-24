@@ -16,6 +16,7 @@ const softSkills = [
   'Team Coordination',
   'Analytical Problem Solving',
   'Attention to Detail',
+  'Emotional Intelligence',
 ];
 
 const tools = [
@@ -36,7 +37,7 @@ const icons: Record<string, string> = {
 };
 ---
 
-<section class="section" id="skills" style="background: var(--deep);">
+<section class="section" id="skills" style="background: var(--deep);" >
   <div class="container">
 
     <div class="section-label reveal">Skills</div>
@@ -136,7 +137,7 @@ const icons: Record<string, string> = {
   }
   .bar-name {
     flex: 1;
-    font-size: 13px;
+    font-size: 16px;
     color: var(--text-muted);
   }
   .bar-num {
@@ -154,14 +155,20 @@ const icons: Record<string, string> = {
     width: 0;
     background: linear-gradient(to right, var(--accent-dim), var(--accent));
     border-radius: 2px;
-    transition: width 1.2s cubic-bezier(0.22, 1, 0.36, 1);
+    transition: width 0.4s ease-out; 
+    transition-delay: 0s;
+    will-change: width;
   }
+
   .bars-visible .bar-fill {
     width: var(--w);
+    transition: width 1.2s cubic-bezier(0.22, 1, 0.36, 1);
+    transition-delay: var(--delay);
   }
 
   .skills-right { display: flex; flex-direction: column; gap: 48px; }
   .soft-list { list-style: none; display: flex; flex-direction: column; gap: 10px; }
+
   .soft-item {
     display: flex;
     align-items: center;
@@ -199,14 +206,28 @@ const icons: Record<string, string> = {
 </style>
 
 <script>
-  const barsEl = document.querySelector('.bars');
-  const observer = new IntersectionObserver(entries => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        entry.target.classList.add('bars-visible');
-        observer.unobserve(entry.target);
-      }
-    });
-  }, { threshold: 0.2 });
-  if (barsEl) observer.observe(barsEl);
+  const initBars = () => {
+    const barsContainer = document.querySelector('.bars');
+    if (!barsContainer) return;
+
+    const observerOptions = {
+      threshold: 0.1, 
+      rootMargin: '0px 0px -50px 0px' 
+    };
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('bars-visible');
+        } else {
+          entry.target.classList.remove('bars-visible');
+        }
+      });
+    }, observerOptions);
+
+    observer.observe(barsContainer);
+  };
+
+  initBars();
+  document.addEventListener('astro:after-swap', initBars);
 </script>

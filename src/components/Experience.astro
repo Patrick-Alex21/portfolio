@@ -56,7 +56,7 @@ const organizational = [
 ];
 ---
 
-<section class="section" id="experience" style="background: var(--deep);">
+<section class="section" id="experience" style="background: var(--deep);" >
   <div class="container">
     <div class="section-label reveal">Experience</div>
     <h2 class="section-title reveal" data-delay="100">MY<br/>JOURNEY</h2>
@@ -164,17 +164,31 @@ const organizational = [
   .exp-timeline::before {
     content: '';
     position: absolute;
-    left: 0; top: 8px; bottom: 8px;
+    left: 4px;
+    top: 8px; 
+    bottom: 8px;
+    width: 1px;
     width: 1px;
     background: var(--border);
   }
-
   .exp-item {
     display: flex;
     gap: 24px;
-    padding: 0 0 40px 0;
+    padding: 0 0 40px 0; /* Original padding [cite: 107] */
     position: relative;
   }
+
+  .exp-item:hover .exp-dot {
+    background: var(--accent);
+    box-shadow: 0 0 15px var(--accent); /* Slightly stronger glow [cite: 109-110] */
+    transition: all 0.3s ease;
+  }
+
+  .exp-item:hover .exp-role {
+    color: var(--accent); /* Title lights up with the dot  */
+    transition: color 0.3s ease;
+  }
+
   .exp-item:last-child { padding-bottom: 0; }
 
   .exp-dot {

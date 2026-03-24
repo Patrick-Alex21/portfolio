@@ -17,6 +17,14 @@ const {
 <!doctype html>
 <html lang="en">
   <head>
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://Patrick-Portfolio-Dev.netlify.app" />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:image" content="/og-image.jpg" /> <meta property="twitter:card" content="summary_large_image" />
+    <meta property="twitter:title" content={title} />
+    <meta property="twitter:description" content={description} />
+    <meta property="twitter:image" content="/og-image.jpg" />
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="description" content={description} />
@@ -24,6 +32,13 @@ const {
     <title>{title}</title>
 
     <!-- Preload fonts -->
+     <link 
+      rel="preload" 
+      href="https://fonts.gstatic.com/s/bebasneue/v14/JTUSjIg69CK48gW7PXoo9WlHyw.woff2" 
+      as="font" 
+      type="font/woff2" 
+      crossorigin 
+    />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   </head>
@@ -49,35 +64,57 @@ const {
       const ring = document.getElementById('cursor-ring')!;
       let mx = 0, my = 0, rx = 0, ry = 0;
 
+      // Update the script block in Layout.astro
       document.addEventListener('mousemove', (e) => {
-        mx = e.clientX; my = e.clientY;
-        dot.style.left  = mx + 'px';
-        dot.style.top   = my + 'px';
+        mx = e.clientX; 
+        my = e.clientY;
+        // Use transform for better performance (GPU accelerated)
+        dot.style.transform = `translate3d(${mx}px, ${my}px, 0)`;
+      });
+
+      document.addEventListener('mousedown', () => {
+        ring.classList.add('cursor-clicking');
+      });
+
+      document.addEventListener('mouseup', () => {
+        ring.classList.remove('cursor-clicking');
       });
 
       function animateRing() {
-        rx += (mx - rx) * 0.12;
+        rx += (mx - rx) * 0.12; 
         ry += (my - ry) * 0.12;
-        ring.style.left = rx + 'px';
-        ring.style.top  = ry + 'px';
+        // Use transform for the ring as well
+        ring.style.transform = `translate3d(${rx}px, ${ry}px, 0)`;
         requestAnimationFrame(animateRing);
       }
       animateRing();
 
       // Scroll reveal
-      const reveals = document.querySelectorAll('.reveal');
-      const observer = new IntersectionObserver((entries) => {
-        entries.forEach((entry, i) => {
-          if (entry.isIntersecting) {
-            const el = entry.target as HTMLElement;
-            const delay = el.dataset.delay || '0';
-            setTimeout(() => el.classList.add('visible'), parseInt(delay));
-            observer.unobserve(el);
-          }
-        });
-      }, { threshold: 0.1 });
+     const initReveal = () => {
+  // Use the class you already have (likely .reveal)
+  const revealSections = document.querySelectorAll('.reveal');
 
-      reveals.forEach(el => observer.observe(el));
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        // SPAWN: Add the class when it hits the screen
+        entry.target.classList.add('spawned');
+      } else {
+        // UNREVEAL: Remove it when it leaves the screen
+        // This is what makes it reset like your skill bars
+        entry.target.classList.remove('spawned');
+      }
+    });
+  }, { 
+    threshold: 0.1, // Trigger when 10% is visible
+    rootMargin: "0px 0px -100px 0px"
+  });
+
+  revealSections.forEach(section => observer.observe(section));
+};
+
+initReveal();
+document.addEventListener('astro:after-swap', initReveal);
     </script>
   </body>
 </html>

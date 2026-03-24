@@ -11,14 +11,16 @@
         <h2 class="section-title reveal" data-delay="100">WHO<br/>AM I</h2>
 
         <p class="about-body reveal" data-delay="200">
-          A versatile game developer across the full spectrum — programming, QA, design, and coordination. 
-          Specialized in both <span class="text-accent">Unity (C#)</span> and
-          <span class="text-accent">Unreal Engine (Blueprints)</span>, focused on building polished, 
+          A versatile game developer comfortable across the full development spectrum from programming, 
+          QA, design, and coordination. Specialized in both <span class="text-accent">Unity (C#)</span> and
+          <span class="text-accent">Unreal Engine (Blueprints)</span>, with a strong focus on building polished, 
           well-tested interactive experiences.
+
+          
         </p>
         <p class="about-body reveal" data-delay="300">
-          Led and coordinated development across 30+ Unity game prototypes, 
-          delivering stable builds with zero critical issues. 
+          Beyond programming, I have led and coordinated development 
+          across 30+ Unity game prototypes, delivering stable builds with zero critical issues. 
           I bring both technical precision and a designer's eye to every team I join.
         </p>
 
@@ -42,8 +44,11 @@
           <div class="detail-row">
             <span class="detail-key">Email</span>
             <span class="detail-val">
-              <a href="mailto:patrick.alexander1121@gmail.com" class="detail-link">
+              <!-- <a href="mailto:patrick.alexander1121@gmail.com" class="detail-link">
                 patrick.alexander1121@gmail.com
+              </a> -->
+              <a href="https://linkedin.com/in/patrick-alexander21" class="detail-link">
+                Patrick Alexander
               </a>
             </span>
           </div>
@@ -52,10 +57,11 @@
         <div class="about-cta reveal" data-delay="500">
           <a href="#projects" class="btn-primary">
             <span>View Projects</span>
-            <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            <svg fill="#000000" xmlns="http://www.w3.org/2000/svg" width="16px" height="16px" viewBox="0 0 52 52" enable-background="new 0 0 52 52" xml:space="preserve">
+            <path d="M9.6,31c-0.8,0.8-0.8,1.9,0,2.7l15,14.7c0.8,0.8,2,0.8,2.8,0l15.1-14.7c0.8-0.8,0.8-1.9,0-2.7l-2.8-2.7 c-0.8-0.8-2-0.8-2.8,0l-4.7,4.6C31.4,33.7,30,33.2,30,32V5c0-1-0.9-2-2-2h-4c-1.1,0-2,1.1-2,2v27c0,1.2-1.4,1.7-2.2,0.9l-4.7-4.6 c-0.8-0.8-2-0.8-2.8,0L9.6,31z"/></svg>
           </a>
           <a href="https://drive.google.com/drive/u/0/folders/1jAK4ctwBNb-rUAFh6kEabQeL1gxgcf8o" target="_blank" class="btn-ghost">
-            Documents ↓
+            Get Documents ↗
           </a>
           <a href="#contact" class="btn-ghost">Get in touch</a>
           <!-- <a href="https://linkedin.com/in/patrick-alexander" target="_blank" class="about-btn">LinkedIn ↗</a>
@@ -103,8 +109,8 @@
 
   .about-grid {
     display: grid;
-    grid-template-columns: 1.2fr 0.9fr;
-    gap: 80px;
+    grid-template-columns: 1.2fr .8fr;
+    gap: 100px;
     align-items: start;
   }
 
@@ -189,7 +195,7 @@
   .photo-wrap {
     position: relative;
     width: 100%;
-    max-height: 335px;
+    max-height: 375px;
     aspect-ratio: 3 / 4;
     overflow: hidden;
     border-radius: 4px;
@@ -255,18 +261,21 @@
   }
 
   .about-card {
-    background: var(--surface);
+    /* Swap the 'brownish' surface for a deep, cool charcoal/navy */
+    background: #0a1118; 
     border: 1px solid var(--border);
     border-radius: 4px;
     padding: 32px;
     position: relative;
+    overflow: hidden; /* Keeps the gradient inside the rounded corners */
   }
+
   .about-card::before {
     content: '';
     position: absolute;
-    inset: -1px;
-    border-radius: 4px;
-    background: linear-gradient(135deg, var(--accent-glow), transparent 60%);
+    inset: 0;
+    /* Pure Cyan-to-Transparent gradient—no muddy colors */
+    background: linear-gradient(135deg, rgba(0, 229, 255, 0.12) 0%, transparent 50%);
     pointer-events: none;
   }
 
@@ -284,15 +293,12 @@
     gap: 8px;
   }
   .trait {
-    font-family: var(--font-mono);
-    font-size: 11px;
-    letter-spacing: 0.08em;
+    background: rgba(255, 255, 255, 0.03); /* Semi-transparent */
+    border: 2px solid rgba(255, 255, 255, 0.08);
+    backdrop-filter: blur(4px); /* Subtle glass effect */
     color: var(--text-muted);
-    border: 1px solid var(--border);
+    font-size: 14px;
     padding: 5px 12px;
-    border-radius: 2px;
-    transition: color 0.2s, border-color 0.2s, background 0.2s;
-    cursor: default;
   }
   .trait:hover {
     color: var(--accent);

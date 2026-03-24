@@ -49,7 +49,7 @@ const projects = [
 const categories = ['All', 'Game Development'];
 ---
 
-<section class="section" id="projects">
+<section class="section" id="projects" >
   <div class="container">
     <div class="section-label reveal">Projects</div>
     <h2 class="section-title reveal" data-delay="100">WORK</h2>
@@ -153,6 +153,7 @@ const categories = ['All', 'Game Development'];
   </div>
 </div>
 
+
 <style>
   /* Filter tabs */
   .filter-tabs {
@@ -160,6 +161,7 @@ const categories = ['All', 'Game Development'];
     gap: 8px;
     margin-bottom: 48px;
   }
+
   .filter-btn {
     font-family: var(--font-mono);
     font-size: 11px;
@@ -200,6 +202,20 @@ const categories = ['All', 'Game Development'];
   .project-card:hover {
     border-color: var(--accent);
     transform: translateY(-4px);
+    box-shadow: 0 12px 40px rgba(0,229,255,0.25);
+
+  }
+
+  .project-card:hover .c-tag {
+    color: var(--accent);
+    border-color: var(--accent);
+    background: var(--accent-glow);
+    transform: translateY(-1px);
+    transition: all 0.3s ease;
+  }
+
+  .project-card:hover .project-thumbnail::after {
+    opacity: 1;
   }
 
   .card-thumb {
@@ -233,22 +249,34 @@ const categories = ['All', 'Game Development'];
   .card-overlay {
     position: absolute;
     inset: 0;
-    background: rgba(0,229,255,0.08);
+    background: rgba(10, 15, 20, 0.85);
     display: flex;
     align-items: center;
     justify-content: center;
     opacity: 0;
-    transition: opacity 0.3s;
+    backdrop-filter: blur(4px);
+    -webkit-backdrop-filter: blur(4px);
+    transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
   }
+
   .project-card:hover .card-overlay { opacity: 1; }
   .card-view {
     font-family: var(--font-mono);
     font-size: 12px;
-    letter-spacing: 0.1em;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
     color: var(--accent);
     border: 1px solid var(--accent);
-    padding: 8px 20px;
+    padding: 10px 24px;
     border-radius: 2px;
+    transform: translateY(12px);
+    background: rgba(0, 229, 255, 0.05);
+    transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+  .project-card:hover .card-view {
+    transform: translateY(0);
+    background: rgba(0, 229, 255, 0.1);
+    box-shadow: 0 0 20px rgba(0, 229, 255, 0.2);
   }
 
   .card-featured {
@@ -290,10 +318,11 @@ const categories = ['All', 'Game Development'];
     font-family: var(--font-mono);
     font-size: 10px;
     letter-spacing: 0.08em;
-    color: var(--text-dim);
+    color: var(--text-muted);
     border: 1px solid var(--border);
-    padding: 3px 8px;
+    padding: 5px 12px;
     border-radius: 2px;
+    transition: all 0.3s ease;
   }
 
   /* More link */
@@ -368,6 +397,7 @@ const categories = ['All', 'Game Development'];
   .modal-close:hover { color: var(--accent); border-color: var(--accent); }
 
   /* Carousel */
+
   .modal-carousel {
     position: relative;
     aspect-ratio: 16/9;
@@ -378,21 +408,20 @@ const categories = ['All', 'Game Development'];
   .carousel-track {
     display: flex;
     height: 100%;
-    transition: transform 0.4s ease;
+    transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
     flex-wrap: nowrap;
-    width: 100%;
   }
 
-  .carousel-slide {
-    min-width: 100%;
-    max-width: 100%;
+  :global(.carousel-slide) {
+    flex: 0 0 100%;
+    width: 100%;
     height: 100%;
-    flex-shrink: 0;
     display: flex;
     align-items: center;
     justify-content: center;
     background: var(--surface);
   }
+
   .carousel-slide img {
     width: 100%;
     height: 100%;
@@ -490,16 +519,27 @@ const categories = ['All', 'Game Development'];
     gap: 8px;
     margin-bottom: 24px;
   }
-  .modal-tag {
+  :global(.modal-tag) {
     font-family: var(--font-mono);
-    font-size: 10px;
-    letter-spacing: 0.1em;
-    color: var(--accent);
-    background: var(--accent-glow);
-    border: 1px solid rgba(0,229,255,0.4);
-    padding: 4px 10px;
+    font-size: 11px;
+    letter-spacing: 0.08em;
+    color: var(--text-muted);
+    border: 1px solid var(--border);
+    padding: 5px 12px;
     border-radius: 2px;
+    transition: color 0.2s, border-color 0.2s, background 0.2s;
+    cursor: default;
+    display: inline-flex;
+    align-items: center;
+    background: transparent;
   }
+  :global(.modal-tag:hover) {
+      color: var(--accent);
+      border-color: var(--accent);
+      background: var(--accent-glow);
+  }
+
+
   .modal-link {
     font-family: var(--font-mono);
     font-size: 12px;
@@ -640,11 +680,17 @@ const categories = ['All', 'Game Development'];
   function goToSlide(index) {
     currentSlide = (index + slides.length) % slides.length;
     updateCarousel();
+    
+    // Reset timer on manual interaction
+    clearInterval(autoPlay);
+    autoPlay = setInterval(() => goToSlide(currentSlide + 1), 3000);
   }
 
   function updateCarousel() {
     track.style.transform = `translateX(-${currentSlide * 100}%)`;
-    document.querySelectorAll('.carousel-dot').forEach((dot, i) => {
+    
+    const dots = dotsContainer.querySelectorAll('.carousel-dot');
+    dots.forEach((dot, i) => {
       dot.classList.toggle('active', i === currentSlide);
     });
   }
