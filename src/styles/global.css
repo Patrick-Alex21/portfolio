@@ -121,7 +121,7 @@ img { display: block; max-width: 100%; }
 
 /* ── Section Layout ── */
 .section {
-  padding: 80px 0;
+  padding: 70px 0;
 }
 
 .container {
@@ -140,7 +140,7 @@ img { display: block; max-width: 100%; }
   display: flex;
   align-items: center;
   gap: 12px;
-  margin-bottom: 24px;
+  margin-bottom: 22px;
 }
 .section-label::before {
   content: '';
@@ -152,10 +152,10 @@ img { display: block; max-width: 100%; }
 /* ── Section Title ── */
 .section-title {
   font-family: var(--font-display);
-  font-size: clamp(48px, 7vw, 88px);
+  font-size: clamp(40px, 7vw, 68px);
   color: var(--text);
   line-height: 0.95;
-  margin-bottom: 24px;
+  margin-bottom: 22px;
 }
 
 /* ── Divider ── */
