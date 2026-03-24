@@ -154,7 +154,11 @@
     transition: color 0.2s, transform 0.2s;
     display: flex;
   }
-  .social-icon:hover { color: var(--accent); transform: scale(1.2); }
+  .social-icon:hover { 
+    color: var(--accent); 
+    transform: scale(1.2); 
+    filter: drop-shadow(0 0 4px var(--accent));
+  }
 
   .hero-inner {
     position: relative;

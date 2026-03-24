@@ -4,6 +4,7 @@ const projects = [
     id: 1,
     index: '01',
     title: 'Insomniacs',
+    tldr: "NOTE: Showcase purposes only.",
     type: 'Game Development',
     shortDesc: 'An educational life-simulation game raising awareness about insomnia among university students.',
     description: 'Designed and developed an educational life-simulation game addressing the need for improved awareness about insomnia among university students using a game-based learning approach. Built solo in Unreal Engine 5 (Blueprints) with core simulation systems and research-backed mechanics.',
@@ -14,18 +15,32 @@ const projects = [
   {
     id: 2,
     index: '02',
+    title: 'Codelamp 3D Game Dev Bootcamp',
+    tldr: null,
+    type: 'Game Development',
+    shortDesc: 'Completed an intensive 3D game development bootcamp with a score of 97/100 — Mastered Distinction.',
+    description: 'Completed an intensive 3D game development bootcamp, mastering core game systems, mechanics, and pipeline workflows. Awarded Mastered Distinction with a final score of 97/100 — highest distinction available.',
+    tags: ['Unity', '3D Game Dev', 'Certified', 'Mastered Distinction'],
+    images: ['/projects/codelamp-1.png', '/projects/codelamp-2.png', '/projects/codelamp-3.png'],
+    link: "https://seryxss.itch.io/pakeeet",
+  },
+  {
+    id: 3,
+    index: '03',
     title: 'IRGL Mini-Games',
+    tldr: "NOTE: This capture represents the early development phase during my time as a team member.",
     type: 'Game Development',
     shortDesc: 'Coordinated development and QA for 30+ Unity mini-games across multiple event cycles.',
     description: 'Progressed from member to coordinator to team leader across multiple event cycles. Managed development and QA for 30+ Unity mini-games, led a 7-person special team, and delivered zero-critical-issue builds to 400+ participants.',
     tags: ['Unity', 'C#', 'QA', 'Team Leadership', 'GitHub'],
     images: ['/projects/irgl-1.png', '/projects/irgl-2.png', '/projects/irgl-3.png'],
-    link: null,
+    link: "https://seryxss.itch.io",
   },
   {
-    id: 3,
-    index: '03',
+    id: 4,
+    index: '04',
     title: 'Community Engagement Game',
+    tldr: "NOTE: Showcase purposes only.",
     type: 'Game Development',
     shortDesc: 'A game prototype developed during a university community engagement internship.',
     description: 'Developed a game prototype during a university community engagement internship. Translated learning objectives into functional gameplay features and collaborated directly with community stakeholders to align the final design with user needs.',
@@ -34,16 +49,18 @@ const projects = [
     link: null,
   },
   {
-    id: 4,
-    index: '04',
-    title: 'Codelamp 3D Game Dev Bootcamp',
+    
+    id: 5,
+    index: '05',
+    title: 'Other Project Archive',
+    tldr: null,
     type: 'Game Development',
-    shortDesc: 'Completed an intensive 3D game development bootcamp with a score of 97/100 — Mastered Distinction.',
-    description: 'Completed an intensive 3D game development bootcamp, mastering core game systems, mechanics, and pipeline workflows. Awarded Mastered Distinction with a final score of 97/100 — highest distinction available.',
-    tags: ['Unity', '3D Game Dev', 'Certified', 'Mastered Distinction'],
-    images: ['/projects/codelamp-1.png', '/projects/codelamp-2.png', '/projects/codelamp-3.png'],
-    link: null,
-  },
+    shortDesc: 'A portfolio of game development projects, demonstrating a versatile mastery of the full development spectrum.',
+    description: 'This archive represents my journey across the full development spectrum—programming, design, and team coordination. I have led some of the creation of for various events, consistently delivering polished, well-tested builds that translate high-level vision into stable, playable reality',
+    tags: ['Unreal Engine 5', 'Unity', 'Game Design', 'VR & AR', 'Prototyping'],
+    images: ['/projects/itchio-1.png'],
+    link: "https://seryxss.itch.io",
+  }
 ];
 
 const categories = ['All', 'Game Development'];
@@ -109,12 +126,12 @@ const categories = ['All', 'Game Development'];
     </div>
 
     <!-- itch.io link -->
-    <div class="more-projects reveal">
+    <!-- <div class="more-projects reveal">
       <a href="https://seryxss.itch.io" target="_blank" class="more-link">
         <span>More projects on itch.io</span>
         <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
       </a>
-    </div>
+    </div> -->
   </div>
 </section>
 
@@ -144,6 +161,7 @@ const categories = ['All', 'Game Development'];
         <span class="modal-index mono" id="modal-index"></span>
       </div>
       <h2 class="modal-title" id="modal-title"></h2>
+      <p class="modal-tldr" id="modal-tldr"></p>
       <p class="modal-desc" id="modal-desc"></p>
       <div class="modal-tags" id="modal-tags"></div>
       <a href="#" class="modal-link" id="modal-link" target="_blank" style="display:none">
@@ -171,7 +189,7 @@ const categories = ['All', 'Game Development'];
     background: none;
     border: 1px solid var(--border);
     padding: 8px 20px;
-    border-radius: 2px;
+    border-radius: 4px;
     cursor: none;
     transition: all 0.2s;
   }
@@ -273,7 +291,7 @@ const categories = ['All', 'Game Development'];
     color: var(--accent);
     border: 1px solid var(--accent);
     padding: 10px 24px;
-    border-radius: 2px;
+    border-radius: 4px;
     transform: translateY(12px);
     background: rgba(0, 229, 255, 0.05);
     transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
@@ -294,7 +312,7 @@ const categories = ['All', 'Game Development'];
     color: var(--black);
     background: var(--accent);
     padding: 3px 8px;
-    border-radius: 2px;
+    border-radius: 4px;
   }
 
   .card-body { padding: 20px; }
@@ -326,7 +344,7 @@ const categories = ['All', 'Game Development'];
     color: var(--text-muted);
     border: 1px solid var(--border);
     padding: 5px 12px;
-    border-radius: 2px;
+    border-radius: 4px;
     transition: all 0.3s ease;
   }
 
@@ -373,7 +391,7 @@ const categories = ['All', 'Game Development'];
   .modal {
     background: var(--surface-2);
     border: 1px solid var(--border-hi);
-    border-radius: 6px;
+    border-radius: 4px;
     width: 100%;
     max-width: 720px;
     max-height: 90vh;
@@ -389,7 +407,7 @@ const categories = ['All', 'Game Development'];
     top: 16px; right: 16px;
     background: var(--surface);
     border: 1px solid var(--border);
-    border-radius: 2px;
+    border-radius: 4px;
     color: var(--text-muted);
     width: 36px; height: 36px;
     display: flex;
@@ -405,10 +423,11 @@ const categories = ['All', 'Game Development'];
 
   .modal-carousel {
     position: relative;
-    aspect-ratio: 16/9;
+    aspect-ratio: 14/ 7; 
     overflow: hidden;
-    background: var(--surface);
+    background: #050810; 
     border-radius: 6px 6px 0 0;
+    
   }
   .carousel-track {
     display: flex;
@@ -452,7 +471,7 @@ const categories = ['All', 'Game Development'];
     transform: translateY(-50%);
     background: rgba(5,8,16,0.7);
     border: 1px solid var(--border-hi);
-    border-radius: 2px;
+    border-radius: 4px;
     color: var(--text-muted);
     width: 40px; height: 40px;
     display: flex;
@@ -473,6 +492,7 @@ const categories = ['All', 'Game Development'];
     transform: translateX(-50%);
     display: flex;
     gap: 6px;
+    justify-content: center;
   }
   .carousel-dot {
     width: 6px; height: 6px;
@@ -512,6 +532,12 @@ const categories = ['All', 'Game Development'];
     margin-bottom: 16px;
     line-height: 1;
   }
+  .modal-tldr {
+    font-size: 10px;
+    color: var(--accent);
+    font-style: bold;
+    margin-bottom: 20px;
+  }
   .modal-desc {
     font-size: 14px;
     color: var(--text-muted);
@@ -531,7 +557,7 @@ const categories = ['All', 'Game Development'];
     color: var(--text-muted);
     border: 1px solid var(--border);
     padding: 5px 12px;
-    border-radius: 2px;
+    border-radius: 4px;
     transition: color 0.2s, border-color 0.2s, background 0.2s;
     cursor: default;
     display: inline-flex;
@@ -548,17 +574,41 @@ const categories = ['All', 'Game Development'];
   .modal-link {
     font-family: var(--font-mono);
     font-size: 12px;
-    letter-spacing: 0.1em;
+    letter-spacing: 0.12em;
     text-transform: uppercase;
     color: var(--black);
     background: var(--accent);
-    padding: 12px 24px;
-    border-radius: 2px;
+    padding: 10px 20px;
+    border-radius: 4px;
     display: inline-flex;
-    transition: opacity 0.2s;
+    transition: opacity 0.2s, transform 0.2s, box-shadow 0.2s;
+    position: relative;
+    overflow: hidden;
   }
-  .modal-link:hover { opacity: 0.85; }
+  .modal-link::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(
+      90deg,
+      transparent,
+      rgba(255, 255, 255, 0.3),
+      transparent
+    );
+  }
 
+  .modal-link:hover { 
+    opacity: 0.9;
+    transform: translateY(-3px);
+    box-shadow: 0 12px 40px rgba(0,229,255,0.25);
+  }
+  .modal-link:hover::after {
+    left: 100%;
+    transition: left 0.7s ease-in-out;
+  }
   @media (max-width: 900px) {
     .projects-grid { grid-template-columns: repeat(2, 1fr); }
   }
@@ -613,6 +663,7 @@ const categories = ['All', 'Game Development'];
       document.getElementById('modal-type').textContent = project.type;
       document.getElementById('modal-index').textContent = project.index;
       document.getElementById('modal-title').textContent = project.title;
+      document.getElementById('modal-tldr').textContent = project.tldr;
       document.getElementById('modal-desc').textContent = project.description;
 
       // Tags
@@ -633,6 +684,20 @@ const categories = ['All', 'Game Development'];
       // Carousel
       slides = project.images;
       currentSlide = 0;
+
+      if (slides.length <= 1) {
+        prevBtn.style.display = 'none';
+        nextBtn.style.display = 'none';
+        dotsContainer.style.display = 'none';
+        if (autoPlay) clearInterval(autoPlay);
+      }else {
+        prevBtn.style.display = 'flex';
+        nextBtn.style.display = 'flex';
+        dotsContainer.style.display = 'flex';
+        clearInterval(autoPlay);
+        autoPlay = setInterval(() => goToSlide(currentSlide + 1), 3000);
+      }
+
       buildCarousel();
 
       overlay.classList.add('open');
