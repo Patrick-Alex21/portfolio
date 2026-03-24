@@ -203,9 +203,7 @@ const categories = ['All', 'Game Development'];
     border-color: var(--accent);
     transform: translateY(-4px);
     box-shadow: 0 12px 40px rgba(0,229,255,0.25);
-
   }
-
   .project-card:hover .c-tag {
     color: var(--accent);
     border-color: var(--accent);
@@ -217,7 +215,14 @@ const categories = ['All', 'Game Development'];
   .project-card:hover .project-thumbnail::after {
     opacity: 1;
   }
-
+  .project-card.reveal {
+    /* Combine the reveal transition with your hover transition */
+    transition: 
+      opacity 0.6s ease-out, 
+      transform 0.7s cubic-bezier(0.16, 1, 0.3, 1),
+      border-color 0.3s ease,
+      box-shadow 0.3s ease;
+  }
   .card-thumb {
     position: relative;
     aspect-ratio: 16/9;

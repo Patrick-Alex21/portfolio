@@ -179,20 +179,23 @@ img { display: block; max-width: 100%; }
 /* ── Reveal Animation ── */
 /* In your global.css */
 
-.reveal {
-  opacity: 0;
-  transform: translateY(40px); /* Start position (down) */
-  transition: 
-    opacity 0.8s ease-out, 
-    transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
-  will-change: transform, opacity;
-}
+  /* Update your base reveal class */
+  .reveal {
+    opacity: 0;
+    transform: translateY(30px); /* Start/End position */
+    /* This transition handles the "Slowly Gone" effect */
+    transition: 
+      opacity 0.6s ease-out, 
+      transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+    will-change: transform, opacity;
+  }
 
-/* When the section is "Active" */
+  /* The active state stays simple */
   .reveal.spawned {
     opacity: 1;
     transform: translateY(0);
   }
+
 
   .reveal.visible {
     opacity: 1;
