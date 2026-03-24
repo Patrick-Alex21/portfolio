@@ -1,0 +1,674 @@
+---
+const projects = [
+  {
+    id: 1,
+    index: '01',
+    title: 'Insomniacs',
+    type: 'Game Development',
+    shortDesc: 'An educational life-simulation game raising awareness about insomnia among university students.',
+    description: 'Designed and developed an educational life-simulation game addressing the need for improved awareness about insomnia among university students using a game-based learning approach. Built solo in Unreal Engine 5 (Blueprints) with core simulation systems and research-backed mechanics.',
+    tags: ['Unreal Engine 5', 'Blueprints', 'Game Design', 'Research'],
+    images: ['/projects/insomniacs-1.png', '/projects/insomniacs-2.png', '/projects/insomniacs-3.png'],
+    link: null,
+  },
+  {
+    id: 2,
+    index: '02',
+    title: 'IRGL Mini-Games',
+    type: 'Game Development',
+    shortDesc: 'Coordinated development and QA for 30+ Unity mini-games across multiple event cycles.',
+    description: 'Progressed from member to coordinator to team leader across multiple event cycles. Managed development and QA for 30+ Unity mini-games, led a 7-person special team, and delivered zero-critical-issue builds to 400+ participants.',
+    tags: ['Unity', 'C#', 'QA', 'Team Leadership', 'GitHub'],
+    images: ['/projects/irgl-1.png', '/projects/irgl-2.png', '/projects/irgl-3.png'],
+    link: null,
+  },
+  {
+    id: 3,
+    index: '03',
+    title: 'Community Engagement Game',
+    type: 'Game Development',
+    shortDesc: 'A game prototype developed during a university community engagement internship.',
+    description: 'Developed a game prototype during a university community engagement internship. Translated learning objectives into functional gameplay features and collaborated directly with community stakeholders to align the final design with user needs.',
+    tags: ['Unreal Engine 5', 'Game Design', 'Prototyping'],
+    images: ['/projects/community-1.png', '/projects/community-2.png', '/projects/community-3.png'],
+    link: null,
+  },
+  {
+    id: 4,
+    index: '04',
+    title: 'Codelamp 3D Game Dev Bootcamp',
+    type: 'Game Development',
+    shortDesc: 'Completed an intensive 3D game development bootcamp with a score of 97/100 — Mastered Distinction.',
+    description: 'Completed an intensive 3D game development bootcamp, mastering core game systems, mechanics, and pipeline workflows. Awarded Mastered Distinction with a final score of 97/100 — highest distinction available.',
+    tags: ['Unity', '3D Game Dev', 'Certified', 'Mastered Distinction'],
+    images: ['/projects/codelamp-1.png', '/projects/codelamp-2.png', '/projects/codelamp-3.png'],
+    link: null,
+  },
+];
+
+const categories = ['All', 'Game Development'];
+---
+
+<section class="section" id="projects">
+  <div class="container">
+    <div class="section-label reveal">Projects</div>
+    <h2 class="section-title reveal" data-delay="100">WORK</h2>
+
+    <!-- Filter tabs -->
+    <div class="filter-tabs reveal" data-delay="150">
+      {categories.map(cat => (
+        <button class="filter-btn" data-filter={cat}>
+          {cat}
+        </button>
+      ))}
+    </div>
+
+    <!-- Project grid -->
+    <div class="projects-grid" id="projects-grid">
+      {projects.map((project, i) => (
+        <div
+          class="project-card reveal"
+          data-delay={`${i * 80}`}
+          data-type={project.type}
+          data-id={project.id}
+        >
+          <!-- Thumbnail -->
+          <div class="card-thumb">
+            <img
+              src={project.images[0]}
+              alt={project.title}
+              class="card-img"
+              onload="this.classList.add('loaded')"
+              onerror="this.classList.add('error')"
+            />
+            <div class="card-placeholder">
+              <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
+            </div>
+            <div class="card-overlay">
+              <span class="card-view">View Project →</span>
+            </div>
+            {/* {project.featured && <span class="card-featured">Featured</span>} */}
+          </div>
+
+          <!-- Card body -->
+          <div class="card-body">
+            <div class="card-type mono">{project.type}</div>
+            <h3 class="card-title">{project.title}</h3>
+            <p class="card-desc">{project.shortDesc}</p>
+            <div class="card-tags">
+              {project.tags.slice(0, 3).map(tag => (
+                <span class="c-tag">{tag}</span>
+              ))}
+              {project.tags.length > 3 && (
+                <span class="c-tag">+{project.tags.length - 3}</span>
+              )}
+            </div>
+          </div>
+        </div>
+      ))}
+    </div>
+
+    <!-- itch.io link -->
+    <div class="more-projects reveal">
+      <a href="https://seryxss.itch.io" target="_blank" class="more-link">
+        <span>More projects on itch.io</span>
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- Modal -->
+<div class="modal-overlay" id="modal-overlay">
+  <div class="modal" id="modal">
+    <button class="modal-close" id="modal-close">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+    </button>
+
+    <!-- Carousel -->
+    <div class="modal-carousel">
+      <div class="carousel-track" id="carousel-track"></div>
+      <button class="carousel-btn carousel-prev" id="carousel-prev">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><polyline points="15 18 9 12 15 6"/></svg>
+      </button>
+      <button class="carousel-btn carousel-next" id="carousel-next">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><polyline points="9 18 15 12 9 6"/></svg>
+      </button>
+      <div class="carousel-dots" id="carousel-dots"></div>
+    </div>
+
+    <!-- Details -->
+    <div class="modal-details">
+      <div class="modal-meta">
+        <span class="modal-type mono" id="modal-type"></span>
+        <span class="modal-index mono" id="modal-index"></span>
+      </div>
+      <h2 class="modal-title" id="modal-title"></h2>
+      <p class="modal-desc" id="modal-desc"></p>
+      <div class="modal-tags" id="modal-tags"></div>
+      <a href="#" class="modal-link" id="modal-link" target="_blank" style="display:none">
+        View Project ↗
+      </a>
+    </div>
+  </div>
+</div>
+
+<style>
+  /* Filter tabs */
+  .filter-tabs {
+    display: flex;
+    gap: 8px;
+    margin-bottom: 48px;
+  }
+  .filter-btn {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--text-dim);
+    background: none;
+    border: 1px solid var(--border);
+    padding: 8px 20px;
+    border-radius: 2px;
+    cursor: none;
+    transition: all 0.2s;
+  }
+  .filter-btn:hover,
+  .filter-btn.active {
+    color: var(--accent);
+    border-color: var(--accent);
+    background: var(--accent-glow);
+  }
+
+  /* Grid */
+  .projects-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+    margin-bottom: 48px;
+  }
+
+  /* Card */
+  .project-card {
+    background: var(--surface-2);
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    overflow: hidden;
+    cursor: none;
+    transition: border-color 0.3s, transform 0.3s;
+  }
+  .project-card:hover {
+    border-color: var(--accent);
+    transform: translateY(-4px);
+  }
+
+  .card-thumb {
+    position: relative;
+    aspect-ratio: 16/9;
+    overflow: hidden;
+    background: var(--surface);
+  }
+  .card-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.4s ease;
+  }
+  .project-card:hover .card-img { transform: scale(1.05); }
+
+  .card-placeholder {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--border-hi);
+    background: var(--surface);
+    z-index: 1;
+  }
+  .card-img.loaded ~ .card-placeholder {
+    display: none;
+  }
+
+  .card-overlay {
+    position: absolute;
+    inset: 0;
+    background: rgba(0,229,255,0.08);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    transition: opacity 0.3s;
+  }
+  .project-card:hover .card-overlay { opacity: 1; }
+  .card-view {
+    font-family: var(--font-mono);
+    font-size: 12px;
+    letter-spacing: 0.1em;
+    color: var(--accent);
+    border: 1px solid var(--accent);
+    padding: 8px 20px;
+    border-radius: 2px;
+  }
+
+  .card-featured {
+    position: absolute;
+    top: 12px; left: 12px;
+    font-family: var(--font-mono);
+    font-size: 9px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--black);
+    background: var(--accent);
+    padding: 3px 8px;
+    border-radius: 2px;
+  }
+
+  .card-body { padding: 20px; }
+  .card-type {
+    font-size: 10px;
+    letter-spacing: 0.15em;
+    color: var(--accent);
+    text-transform: uppercase;
+    margin-bottom: 8px;
+  }
+  .card-title {
+    font-family: var(--font-display);
+    font-size: 22px;
+    color: var(--text);
+    margin-bottom: 8px;
+    line-height: 1.1;
+  }
+  .card-desc {
+    font-size: 13px;
+    color: var(--text-muted);
+    line-height: 1.6;
+    margin-bottom: 14px;
+  }
+  .card-tags { display: flex; flex-wrap: wrap; gap: 6px; }
+  .c-tag {
+    font-family: var(--font-mono);
+    font-size: 10px;
+    letter-spacing: 0.08em;
+    color: var(--text-dim);
+    border: 1px solid var(--border);
+    padding: 3px 8px;
+    border-radius: 2px;
+  }
+
+  /* More link */
+  .more-projects {
+    display: flex;
+    justify-content: center;
+    padding-top: 16px;
+    border-top: 1px solid var(--border);
+  }
+  .more-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-family: var(--font-mono);
+    font-size: 12px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    transition: color 0.2s;
+  }
+  .more-link:hover { color: var(--accent); }
+
+  /* Modal overlay */
+  .modal-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(5,8,16,0.9);
+    backdrop-filter: blur(8px);
+    z-index: 200;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s;
+    padding: 24px;
+  }
+  .modal-overlay.open {
+    opacity: 1;
+    pointer-events: all;
+  }
+
+  .modal {
+    background: var(--surface-2);
+    border: 1px solid var(--border-hi);
+    border-radius: 6px;
+    width: 100%;
+    max-width: 720px;
+    max-height: 90vh;
+    overflow-y: auto;
+    position: relative;
+    transform: translateY(20px);
+    transition: transform 0.3s;
+  }
+  .modal-overlay.open .modal { transform: translateY(0); }
+
+  .modal-close {
+    position: absolute;
+    top: 16px; right: 16px;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 2px;
+    color: var(--text-muted);
+    width: 36px; height: 36px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: none;
+    z-index: 10;
+    transition: color 0.2s, border-color 0.2s;
+  }
+  .modal-close:hover { color: var(--accent); border-color: var(--accent); }
+
+  /* Carousel */
+  .modal-carousel {
+    position: relative;
+    aspect-ratio: 16/9;
+    overflow: hidden;
+    background: var(--surface);
+    border-radius: 6px 6px 0 0;
+  }
+  .carousel-track {
+    display: flex;
+    height: 100%;
+    transition: transform 0.4s ease;
+    flex-wrap: nowrap;
+    width: 100%;
+  }
+
+  .carousel-slide {
+    min-width: 100%;
+    max-width: 100%;
+    height: 100%;
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--surface);
+  }
+  .carousel-slide img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+  .carousel-placeholder {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 12px;
+    color: var(--border-hi);
+  }
+  .carousel-placeholder span {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    letter-spacing: 0.1em;
+    color: var(--text-dim);
+  }
+
+  .carousel-btn {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: rgba(5,8,16,0.7);
+    border: 1px solid var(--border-hi);
+    border-radius: 2px;
+    color: var(--text-muted);
+    width: 40px; height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: none;
+    transition: color 0.2s, border-color 0.2s;
+    z-index: 5;
+  }
+  .carousel-btn:hover { color: var(--accent); border-color: var(--accent); }
+  .carousel-prev { left: 12px; }
+  .carousel-next { right: 12px; }
+
+  .carousel-dots {
+    position: absolute;
+    bottom: 12px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    gap: 6px;
+  }
+  .carousel-dot {
+    width: 6px; height: 6px;
+    border-radius: 50%;
+    background: var(--border-hi);
+    transition: background 0.2s, transform 0.2s;
+    cursor: none;
+  }
+  .carousel-dot.active {
+    background: var(--accent);
+    transform: scale(1.3);
+  }
+
+  /* Modal details */
+  .modal-details { padding: 28px 32px 32px; }
+  .modal-meta {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 12px;
+  }
+  .modal-type {
+    font-size: 10px;
+    letter-spacing: 0.2em;
+    color: var(--accent);
+    text-transform: uppercase;
+  }
+  .modal-index {
+    font-size: 10px;
+    letter-spacing: 0.1em;
+    color: var(--text-dim);
+  }
+  .modal-title {
+    font-family: var(--font-display);
+    font-size: 40px;
+    color: var(--text);
+    margin-bottom: 16px;
+    line-height: 1;
+  }
+  .modal-desc {
+    font-size: 14px;
+    color: var(--text-muted);
+    line-height: 1.8;
+    margin-bottom: 20px;
+  }
+  .modal-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-bottom: 24px;
+  }
+  .modal-tag {
+    font-family: var(--font-mono);
+    font-size: 10px;
+    letter-spacing: 0.1em;
+    color: var(--accent);
+    background: var(--accent-glow);
+    border: 1px solid rgba(0,229,255,0.4);
+    padding: 4px 10px;
+    border-radius: 2px;
+  }
+  .modal-link {
+    font-family: var(--font-mono);
+    font-size: 12px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--black);
+    background: var(--accent);
+    padding: 12px 24px;
+    border-radius: 2px;
+    display: inline-flex;
+    transition: opacity 0.2s;
+  }
+  .modal-link:hover { opacity: 0.85; }
+
+  @media (max-width: 900px) {
+    .projects-grid { grid-template-columns: repeat(2, 1fr); }
+  }
+  @media (max-width: 600px) {
+    .projects-grid { grid-template-columns: 1fr; }
+    .modal-details { padding: 20px; }
+    .modal-title { font-size: 28px; }
+  }
+</style>
+
+<script define:vars={{ projects }}>
+  const overlay = document.getElementById('modal-overlay');
+  const closeBtn = document.getElementById('modal-close');
+  const track = document.getElementById('carousel-track');
+  const dotsContainer = document.getElementById('carousel-dots');
+  const prevBtn = document.getElementById('carousel-prev');
+  const nextBtn = document.getElementById('carousel-next');
+
+  let currentSlide = 0;
+  let slides = [];
+
+  // Filter
+  const filterBtns = document.querySelectorAll('.filter-btn');
+  const cards = document.querySelectorAll('.project-card');
+
+  filterBtns[0].classList.add('active');
+
+  filterBtns.forEach(btn => {
+    btn.addEventListener('click', () => {
+      filterBtns.forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      const filter = btn.dataset.filter;
+
+      cards.forEach(card => {
+        if (filter === 'All' || card.dataset.type === filter) {
+          card.style.display = 'block';
+        } else {
+          card.style.display = 'none';
+        }
+      });
+    });
+  });
+
+  // Open modal
+  cards.forEach(card => {
+    card.addEventListener('click', () => {
+      const id = parseInt(card.dataset.id);
+      const project = projects.find(p => p.id === id);
+      if (!project) return;
+
+      // Populate details
+      document.getElementById('modal-type').textContent = project.type;
+      document.getElementById('modal-index').textContent = project.index;
+      document.getElementById('modal-title').textContent = project.title;
+      document.getElementById('modal-desc').textContent = project.description;
+
+      // Tags
+      const tagsEl = document.getElementById('modal-tags');
+      tagsEl.innerHTML = project.tags.map(t =>
+        `<span class="modal-tag">${t}</span>`
+      ).join('');
+
+      // Link
+      const linkEl = document.getElementById('modal-link');
+      if (project.link) {
+        linkEl.href = project.link;
+        linkEl.style.display = 'inline-flex';
+      } else {
+        linkEl.style.display = 'none';
+      }
+
+      // Carousel
+      slides = project.images;
+      currentSlide = 0;
+      buildCarousel();
+
+      overlay.classList.add('open');
+      document.body.style.overflow = 'hidden';
+    });
+  });
+
+  function buildCarousel() {
+  track.innerHTML = '';
+  dotsContainer.innerHTML = '';
+
+  slides.forEach((src, i) => {
+    const slide = document.createElement('div');
+    slide.className = 'carousel-slide';
+
+    const img = document.createElement('img');
+    img.src = src;
+    img.alt = 'Project screenshot';
+    img.style.width = '100%';
+    img.style.height = '100%';
+    img.style.objectFit = 'cover';
+
+    img.onerror = () => {
+      slide.innerHTML = `
+        <div class="carousel-placeholder">
+          <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1">
+            <rect x="3" y="3" width="18" height="18" rx="2"/>
+            <circle cx="8.5" cy="8.5" r="1.5"/>
+            <polyline points="21 15 16 10 5 21"/>
+          </svg>
+          <span>Image: ${src}</span>
+        </div>
+      `;
+    };
+
+    slide.appendChild(img);
+    track.appendChild(slide);
+
+    const dot = document.createElement('div');
+    dot.className = `carousel-dot ${i === 0 ? 'active' : ''}`;
+    dot.dataset.index = String(i);
+    dot.addEventListener('click', () => goToSlide(i));
+    dotsContainer.appendChild(dot);
+  });
+
+  currentSlide = 0;
+  updateCarousel();
+}
+
+  function goToSlide(index) {
+    currentSlide = (index + slides.length) % slides.length;
+    updateCarousel();
+  }
+
+  function updateCarousel() {
+    track.style.transform = `translateX(-${currentSlide * 100}%)`;
+    document.querySelectorAll('.carousel-dot').forEach((dot, i) => {
+      dot.classList.toggle('active', i === currentSlide);
+    });
+  }
+
+  prevBtn.addEventListener('click', (e) => { e.stopPropagation(); goToSlide(currentSlide - 1); });
+  nextBtn.addEventListener('click', (e) => { e.stopPropagation(); goToSlide(currentSlide + 1); });
+
+  // Auto advance
+  let autoPlay = setInterval(() => goToSlide(currentSlide + 1), 3000);
+
+  // Close modal
+  function closeModal() {
+    overlay.classList.remove('open');
+    document.body.style.overflow = '';
+    clearInterval(autoPlay);
+  }
+
+  closeBtn.addEventListener('click', closeModal);
+  overlay.addEventListener('click', (e) => {
+    if (e.target === overlay) closeModal();
+  });
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') closeModal();
+    if (e.key === 'ArrowLeft') goToSlide(currentSlide - 1);
+    if (e.key === 'ArrowRight') goToSlide(currentSlide + 1);
+  });
+</script>

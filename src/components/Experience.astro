@@ -1,0 +1,316 @@
+---
+import manifest from "astro:config/server";
+
+const experiences = [
+  {
+    period: 'Jan 2025 — Jul 2025',
+    role: 'Laboratory Assistant',
+    org: 'Petra Christian University',
+    type: 'Laboratory Management',
+    desc: 'Maintained lab environments for 100+ students across 10+ weekly sessions. Enforced safety protocols resulting in zero equipment malfunctions across four years.',
+    tags: ['Lab Management', 'Google Workspace', 'Documentation'],
+    highlight: false,
+  },
+  {
+    period: 'Feb 2024 — Jul 2025',
+    role: 'Lecturer Assistant',
+    org: 'Petra Christian University',
+    type: 'Computer Graphics',
+    desc: 'Assisted lead instructor for ~45 third-year undergrad students. Guided debugging of graphics programs with 90% success rate. Provided one-on-one support for efficient error resolution.',
+    tags: ['Three.js', 'IntelliJ', 'Mentoring'],
+    highlight: false,
+  },
+  {
+    period: 'Jul 2024 — Dec 2024',
+    role: 'Game Programmer Intern',
+    org: 'Petra Christian University',
+    type: 'Community Engagement',
+    desc: 'Developed a game prototype translating learning objectives into functional gameplay. Collaborated with community stakeholders to align engagement goals with final design.',
+    tags: ['Unreal Engine 5', 'GitHub', 'Game Design'],
+    highlight: false,
+  },
+];
+
+const organizational = [
+  {
+    period: 'Dec 2023 — Oct 2024',
+    role: 'Leader of Special Team',
+    org: 'Petra Christian University · Informatics Rally Games and Logic',
+    desc: 'Led a cross-functional team of 7 developers in designing and launching 10+ educational games for university events. Managed all bug fixes by leading testing with other teams using a comprehensive QA process, reviewing and sorting new bugs, and handling first-pass fixes. Successfully delivered all projects for 80+ participating teams with zero critical issues at launch.',
+    tags: ['Team Coordination', 'Unity', 'GitHub', 'Quality Assurance'],
+  },
+  {
+    period: 'Dec 2022 — Nov 2023',
+    role: 'Coordinator of IT Game',
+    org: 'Petra Christian University · Informatics Rally Games and Logic',
+    desc: 'Coordinated a team of 10 developers, monitoring projects for 20+ mini-games through regular progress tracking sessions. Enhanced game quality by creating and executing test cases, documenting bug reports, and leading design reviews to guide gameplay improvements. Successfully coordinated a university-wide event for 100+ teams (300+ participants) in a post-COVID offline format.',
+    tags: ['Team Coordination', 'Unity', 'GitHub', 'Quality Assurance'],
+  },
+  {
+    period: 'Nov 2021 — Nov 2022',
+    role: 'Member of IT Game',
+    org: 'Petra Christian University · Informatics Rally Games and Logic',
+    desc: 'Developed 2 interactive Unity games for university logic and rally events, successfully deployed to 70+ teams in hybrid online/offline format during COVID restrictions ',
+    tags: ['Unity', 'GitHub', 'Game Design'],
+  },
+];
+---
+
+<section class="section" id="experience" style="background: var(--deep);">
+  <div class="container">
+    <div class="section-label reveal">Experience</div>
+    <h2 class="section-title reveal" data-delay="100">MY<br/>JOURNEY</h2>
+
+    <div class="exp-layout">
+
+      <!-- Professional Experience -->
+      <div class="exp-col">
+        <h3 class="exp-col-title reveal">Professional</h3>
+
+        <div class="exp-timeline">
+          {experiences.map((exp, i) => (
+            <div class={`exp-item reveal ${exp.highlight ? 'exp-highlight' : ''}`} data-delay={`${i * 100}`}>
+              <div class="exp-dot"></div>
+              <div class="exp-content">
+                <div class="exp-period mono">{exp.period}</div>
+                <h4 class="exp-role">{exp.role}</h4>
+                <div class="exp-org">
+                  {exp.org}
+                  <span class="exp-type">· {exp.type}</span>
+                </div>
+                <p class="exp-desc">{exp.desc}</p>
+                <div class="exp-tags">
+                  {exp.tags.map(tag => (
+                    <span class="exp-tag">{tag}</span>
+                  ))}
+                </div>
+              </div>
+            </div>
+          ))}
+        </div>
+
+      <!-- Education Card -->
+        <div class="edu-card reveal" data-delay="400">
+          <div class="edu-label mono">Education</div>
+          <h4 class="edu-school">Universitas Kristen Petra</h4>
+          <p class="edu-degree">Bachelor of Computer Science · Informatics</p>
+          <p class="edu-period mono">Jul 2021 — Jul 2025</p>
+          <!-- <div class="edu-gpa">
+            <span class="gpa-num">3.48</span>
+            <span class="gpa-denom">/ 4.00</span>
+          </div> -->
+          <div class="edu-courses">
+            <div class="mono" style="font-size:10px;color:var(--text-dim);letter-spacing:0.15em;margin-bottom:10px">RELEVANT COURSES</div>
+            <div class="course-list">
+              {['Game Programming', 'Game Design', 'Game Content Dev', 'Concept Art & Modeling', 'Virtual Reality', 'Game AI'].map(c => (
+                <span class="course-chip">{c}</span>
+              ))}
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- organizational Experience -->
+      <div class="exp-col">
+        <h3 class="exp-col-title reveal" data-delay="100">Organization</h3>
+
+        <div class="exp-timeline">
+          {organizational.map((item, i) => (
+            <div class="exp-item reveal" data-delay={`${i * 100 + 150}`}>
+              <div class="exp-dot"></div>
+              <div class="exp-content">
+                <div class="exp-period mono">{item.period}</div>
+                <h4 class="exp-role">{item.role}</h4>
+                <div class="exp-org">{item.org}</div>
+                <p class="exp-desc">{item.desc}</p>
+                <div class="exp-tags">
+                  {item.tags.map(tag => (
+                    <span class="exp-tag">{tag}</span>
+                  ))}
+                </div>
+              </div>
+            </div>
+          ))}
+        </div>
+
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<style>
+  .exp-layout {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 64px;
+  }
+
+  .exp-col-title {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 40px;
+  }
+
+  .exp-timeline {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+  }
+  .exp-timeline::before {
+    content: '';
+    position: absolute;
+    left: 0; top: 8px; bottom: 8px;
+    width: 1px;
+    background: var(--border);
+  }
+
+  .exp-item {
+    display: flex;
+    gap: 24px;
+    padding: 0 0 40px 0;
+    position: relative;
+  }
+  .exp-item:last-child { padding-bottom: 0; }
+
+  .exp-dot {
+    width: 9px;
+    height: 9px;
+    border-radius: 50%;
+    background: var(--border-hi);
+    border: 2px solid var(--surface);
+    flex-shrink: 0;
+    margin-top: 5px;
+    position: relative;
+    z-index: 1;
+    transition: background 0.2s, box-shadow 0.2s;
+  }
+  .exp-item:hover .exp-dot,
+  .exp-highlight .exp-dot {
+    background: var(--accent);
+    box-shadow: 0 0 12px var(--accent);
+  }
+
+  .exp-period {
+    font-size: 10px;
+    letter-spacing: 0.12em;
+    color: var(--text-dim);
+    margin-bottom: 6px;
+  }
+
+  .exp-role {
+    font-family: var(--font-display);
+    font-size: 22px;
+    color: var(--text);
+    margin-bottom: 4px;
+    letter-spacing: 0.04em;
+  }
+
+  .exp-org {
+    font-size: 13px;
+    color: var(--text-muted);
+    margin-bottom: 12px;
+  }
+  .exp-type {
+    color: var(--text-dim);
+  }
+
+  .exp-desc {
+    font-size: 13px;
+    color: var(--text-dim);
+    line-height: 1.7;
+    margin-bottom: 12px;
+  }
+
+  .exp-tags { display: flex; flex-wrap: wrap; gap: 6px; }
+  .exp-tag {
+    font-family: var(--font-mono);
+    font-size: 10px;
+    letter-spacing: 0.08em;
+    color: var(--accent);
+    background: var(--accent-glow);
+    border: 1px solid rgba(0,229,255,0.15);
+    padding: 3px 8px;
+    border-radius: 2px;
+  }
+
+  /* Education */
+  .edu-card {
+    margin-top: 48px;
+    padding: 32px;
+    background: var(--surface-2);
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    position: relative;
+    overflow: hidden;
+  }
+  .edu-card::after {
+    content: 'BSc';
+    position: absolute;
+    right: 24px; top: 24px;
+    font-family: var(--font-display);
+    font-size: 48px;
+    color: var(--border);
+    line-height: 1;
+  }
+
+  .edu-label {
+    font-size: 10px;
+    letter-spacing: 0.2em;
+    color: var(--accent);
+    text-transform: uppercase;
+    margin-bottom: 12px;
+  }
+  .edu-school {
+    font-family: var(--font-display);
+    font-size: 24px;
+    color: var(--text);
+    margin-bottom: 4px;
+  }
+  .edu-degree {
+    font-size: 13px;
+    color: var(--text-muted);
+    margin-bottom: 6px;
+  }
+  .edu-period {
+    font-size: 11px;
+    color: var(--text-dim);
+    letter-spacing: 0.1em;
+    margin-bottom: 20px;
+  }
+  .edu-gpa {
+    display: flex;
+    align-items: baseline;
+    gap: 4px;
+    margin-bottom: 24px;
+  }
+  .gpa-num {
+    font-family: var(--font-display);
+    font-size: 48px;
+    color: var(--accent);
+    line-height: 1;
+  }
+  .gpa-denom {
+    font-family: var(--font-mono);
+    font-size: 14px;
+    color: var(--text-dim);
+  }
+  .course-list { display: flex; flex-wrap: wrap; gap: 6px; }
+  .course-chip {
+    font-family: var(--font-mono);
+    font-size: 10px;
+    color: var(--accent);
+    background: var(--accent-glow);
+    border: 1px solid rgba(0,229,255,0.15);
+    padding: 4px 8px;
+    border-radius: 2px;
+  }
+
+  @media (max-width: 900px) {
+    .exp-layout { grid-template-columns: 1fr; gap: 48px; }
+  }
+</style>

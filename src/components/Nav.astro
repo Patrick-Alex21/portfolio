@@ -1,0 +1,177 @@
+---
+const navLinks = [
+  { label: 'About',      href: '#about' },
+  { label: 'Skills',     href: '#skills' },
+  { label: 'Projects',   href: '#projects' },
+  { label: 'Experience', href: '#experience' },
+  { label: 'Contact',    href: '#contact' },
+];
+---
+
+<nav id="nav">
+  <div class="nav-inner container">
+    <a href="/" class="nav-logo">
+      <span class="logo-bracket">[</span>PA<span class="logo-bracket">]</span>
+    </a>
+
+    <ul class="nav-links">
+      {navLinks.map((link, i) => (
+        <li>
+          <a href={link.href} class="nav-link">
+            <span class="nav-index">0{i + 1}</span>
+            {link.label}
+          </a>
+        </li>
+      ))}
+    </ul>
+
+    <a href="mailto:patrick.alexander1121@gmail.com" class="nav-cta">
+      Hire Me
+    </a>
+
+    <button class="nav-burger" id="nav-burger" aria-label="Menu">
+      <span></span><span></span>
+    </button>
+  </div>
+
+  <!-- Mobile Menu -->
+  <div class="nav-mobile" id="nav-mobile">
+    <ul>
+      {navLinks.map((link) => (
+        <li><a href={link.href} class="mobile-link">{link.label}</a></li>
+      ))}
+      <li><a href="mailto:patrick.alexander1121@gmail.com" class="mobile-link text-accent">Hire Me →</a></li>
+    </ul>
+  </div>
+</nav>
+
+<style>
+  #nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 100;
+    transition: background 0.3s ease, border-color 0.3s ease;
+    border-bottom: 1px solid transparent;
+  }
+  #nav.scrolled {
+    background: rgba(8,8,8,0.92);
+    backdrop-filter: blur(20px);
+    border-color: var(--border);
+  }
+  .nav-inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 72px;
+  }
+  .nav-logo {
+    font-family: var(--font-display);
+    font-size: 28px;
+    letter-spacing: 0.05em;
+    color: var(--text);
+    transition: color 0.2s;
+    padding-left: 72px;
+  }
+  .nav-logo:hover { color: var(--accent); }
+  .logo-bracket { color: var(--accent); }
+
+  .nav-links {
+    display: flex;
+    list-style: none;
+    gap: 8px;
+  }
+  .nav-link {
+    font-family: var(--font-mono);
+    font-size: 12px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    padding: 8px 14px;
+    border-radius: 2px;
+    transition: color 0.2s, background 0.2s;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+  .nav-link:hover { color: var(--accent); background: var(--accent-glow); }
+  .nav-index {
+    color: var(--text-dim);
+    font-size: 10px;
+  }
+
+  .nav-cta {
+    font-family: var(--font-mono);
+    font-size: 12px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--black);
+    background: var(--accent);
+    padding: 10px 20px;
+    border-radius: 2px;
+    transition: opacity 0.2s, transform 0.2s;
+    font-weight: 500;
+  }
+  .nav-cta:hover { opacity: 0.85; transform: translateY(-1px); }
+
+  .nav-burger {
+    display: none;
+    flex-direction: column;
+    gap: 5px;
+    background: none;
+    border: none;
+    cursor: none;
+    padding: 8px;
+  }
+  .nav-burger span {
+    display: block;
+    width: 24px;
+    height: 1.5px;
+    background: var(--text);
+    transition: all 0.3s ease;
+  }
+
+  .nav-mobile {
+    display: none;
+    background: var(--deep);
+    border-top: 1px solid var(--border);
+    padding: 24px;
+  }
+  .nav-mobile ul { list-style: none; }
+  .mobile-link {
+    display: block;
+    font-family: var(--font-mono);
+    font-size: 14px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    padding: 14px 0;
+    border-bottom: 1px solid var(--border);
+    transition: color 0.2s;
+  }
+  .mobile-link:hover { color: var(--accent); }
+
+  @media (max-width: 768px) {
+    .nav-links, .nav-cta { display: none; }
+    .nav-burger { display: flex; }
+    .nav-mobile.open { display: block; }
+  }
+</style>
+
+<script>
+  const nav    = document.getElementById('nav')!;
+  const burger = document.getElementById('nav-burger')!;
+  const mobile = document.getElementById('nav-mobile')!;
+
+  window.addEventListener('scroll', () => {
+    nav.classList.toggle('scrolled', window.scrollY > 20);
+  });
+
+  burger.addEventListener('click', () => {
+    mobile.classList.toggle('open');
+  });
+
+  // Close mobile on link click
+  document.querySelectorAll('.mobile-link').forEach(link => {
+    link.addEventListener('click', () => mobile.classList.remove('open'));
+  });
+</script>

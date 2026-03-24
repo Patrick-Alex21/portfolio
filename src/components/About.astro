@@ -1,0 +1,316 @@
+---
+---
+
+<section class="section" id="about">
+  <div class="container">
+    <div class="about-grid">
+
+      <!-- Left: Text -->
+      <div class="about-content">
+        <div class="section-label reveal">About Me</div>
+        <h2 class="section-title reveal" data-delay="100">WHO<br/>AM I</h2>
+
+        <p class="about-body reveal" data-delay="200">
+          A versatile game developer across the full spectrum — programming, QA, design, and coordination. 
+          Specialized in both <span class="text-accent">Unity (C#)</span> and
+          <span class="text-accent">Unreal Engine (Blueprints)</span>, focused on building polished, 
+          well-tested interactive experiences.
+        </p>
+        <p class="about-body reveal" data-delay="300">
+          Led and coordinated development across 30+ Unity game prototypes, 
+          delivering stable builds with zero critical issues. 
+          I bring both technical precision and a designer's eye to every team I join.
+        </p>
+
+        <div class="about-details reveal" data-delay="400">
+          <div class="detail-row">
+            <span class="detail-key">Location</span>
+            <span class="detail-val">Surabaya / Samarinda, Indonesia</span>
+          </div>
+          <!-- <div class="detail-row">
+            <span class="detail-key">Degree</span>
+            <span class="detail-val">B.Sc. Computer Science, 2025</span>
+          </div>
+          <div class="detail-row">
+            <span class="detail-key">GPA</span>
+            <span class="detail-val">3.48 / 4.00</span>
+          </div> -->
+          <div class="detail-row">
+            <span class="detail-key">Languages</span>
+            <span class="detail-val">Indonesian · English · Korean · Japanese (Learning)</span>
+          </div>
+          <div class="detail-row">
+            <span class="detail-key">Email</span>
+            <span class="detail-val">
+              <a href="mailto:patrick.alexander1121@gmail.com" class="detail-link">
+                patrick.alexander1121@gmail.com
+              </a>
+            </span>
+          </div>
+        </div>
+
+        <div class="about-cta reveal" data-delay="500">
+          <a href="#projects" class="btn-primary">
+            <span>View Projects</span>
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </a>
+          <a href="https://drive.google.com/drive/u/0/folders/1jAK4ctwBNb-rUAFh6kEabQeL1gxgcf8o" target="_blank" class="btn-ghost">
+            Documents ↓
+          </a>
+          <a href="#contact" class="btn-ghost">Get in touch</a>
+          <!-- <a href="https://linkedin.com/in/patrick-alexander" target="_blank" class="about-btn">LinkedIn ↗</a>
+          <a href="https://seryxss.itch.io" target="_blank" class="about-btn">itch.io ↗</a> -->
+        </div>
+      </div>
+
+      <!-- Right: Photo + Quote Card -->
+      <div class="about-visual reveal" data-delay="200">
+
+        <div class="photo-wrap">
+          <img src="/PhotoCut.jpg" alt="Patrick Alexander" class="about-photo" />
+          <div class="photo-overlay"></div>
+          <div class="photo-corner photo-corner-tl"></div>
+          <div class="photo-corner photo-corner-br"></div>
+          <div class="photo-nametag">
+            <span class="badge-dot"></span>
+            <span class="mono" style="font-size:10px;letter-spacing:0.15em;color:var(--text)">PATRICK ALEXANDER</span>
+          </div>
+        </div>
+
+        <div class="about-card">
+          <div class="card-quote">
+            "I build worlds,<br/>then break them<br/>to make them<br/>stronger."
+          </div>
+          <div class="card-traits">
+            <span class="trait">🌙 Night Owl</span>
+            <span class="trait">☕ Coffee Driven</span>
+            <span class="trait">📖 Lore Hoarder</span>
+            <span class="trait">🧠 ISFP</span>
+          </div>
+        </div>
+
+        <div class="deco-corner"></div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<style>
+  #about .section-title {
+    margin-bottom: 24px;
+  }
+
+  .about-grid {
+    display: grid;
+    grid-template-columns: 1.2fr 0.9fr;
+    gap: 80px;
+    align-items: start;
+  }
+
+  .about-body {
+    color: var(--text-muted);
+    line-height: 1.8;
+    margin-bottom: 10px;
+    font-size: 15px;
+  }
+
+  .about-details {
+    margin: 32px 0;
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    overflow: hidden;
+  }
+  .detail-row {
+    display: flex;
+    padding: 12px 20px;
+    border-bottom: 1px solid var(--border);
+    font-size: 13px;
+  }
+  .detail-row:last-child { border-bottom: none; }
+  .detail-key {
+    font-family: var(--font-mono);
+    color: var(--text-dim);
+    letter-spacing: 0.1em;
+    font-size: 11px;
+    text-transform: uppercase;
+    min-width: 100px;
+    align-self: center;
+  }
+  .detail-val { color: var(--text-muted); }
+  .detail-link { color: var(--accent); transition: opacity 0.2s; }
+  .detail-link:hover { opacity: 0.75; }
+
+  /* CTAs */
+  .about-cta { display: flex; gap: 12px; flex-wrap: wrap; }
+  .btn-primary {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    font-family: var(--font-mono);
+    font-size: 12px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--black);
+    background: var(--accent);
+    padding: 12px 24px;
+    border-radius: 2px;
+    font-weight: 500;
+    transition: opacity 0.2s, transform 0.2s, box-shadow 0.2s;
+  }
+  .btn-primary:hover {
+    opacity: 0.9;
+    transform: translateY(-2px);
+    box-shadow: 0 8px 24px rgba(0,229,255,0.25);
+  }
+  .btn-ghost {
+    display: inline-flex;
+    align-items: center;
+    font-family: var(--font-mono);
+    font-size: 12px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    border: 1px solid var(--border-hi);
+    padding: 14px 24px;
+    border-radius: 2px;
+    transition: color 0.2s, border-color 0.2s;
+  }
+  .btn-ghost:hover { color: var(--accent); border-color: var(--accent); }
+
+  /* Right column */
+  .about-visual {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+
+  .photo-wrap {
+    position: relative;
+    width: 100%;
+    max-height: 335px;
+    aspect-ratio: 3 / 4;
+    overflow: hidden;
+    border-radius: 4px;
+  }
+  .about-photo {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: top;
+    filter: grayscale(100%) contrast(1.05);
+    transition: filter 0.4s ease, transform 0.6s ease;
+  }
+  .photo-wrap:hover .about-photo {
+    filter: grayscale(60%) contrast(1.05);
+    transform: scale(1.03);
+  }
+
+  .photo-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to top, rgba(0,229,255,0.18) 0%, transparent 50%);
+    mix-blend-mode: screen;
+    pointer-events: none;
+  }
+
+  .photo-corner {
+    position: absolute;
+    width: 24px; height: 24px;
+    pointer-events: none;
+  }
+
+  .photo-corner-tl {
+    top: 12px; left: 12px;
+    border-top: 1.5px solid var(--accent);
+    border-left: 1.5px solid var(--accent);
+    opacity: 1;
+  }
+  .photo-corner-br {
+    bottom: 12px; right: 12px;
+    border-bottom: 1.5px solid var(--accent);
+    border-right: 1.5px solid var(--accent);
+    opacity: 1;
+  }
+
+  .photo-nametag {
+    position: absolute;
+    bottom: 16px; left: 16px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    background: rgba(5,8,16,0.75);
+    backdrop-filter: blur(8px);
+    border: 1px solid var(--border-hi);
+    padding: 8px 14px;
+    border-radius: 2px;
+  }
+  .badge-dot {
+    width: 6px; height: 6px;
+    background: var(--accent);
+    border-radius: 50%;
+    flex-shrink: 0;
+    animation: pulse 2s ease infinite;
+  }
+
+  .about-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    padding: 32px;
+    position: relative;
+  }
+  .about-card::before {
+    content: '';
+    position: absolute;
+    inset: -1px;
+    border-radius: 4px;
+    background: linear-gradient(135deg, var(--accent-glow), transparent 60%);
+    pointer-events: none;
+  }
+
+  .card-quote {
+    font-family: var(--font-display);
+    font-size: 28px;
+    line-height: 1.15;
+    color: var(--text);
+    margin-bottom: 24px;
+  }
+
+  .card-traits {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+  .trait {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    letter-spacing: 0.08em;
+    color: var(--text-muted);
+    border: 1px solid var(--border);
+    padding: 5px 12px;
+    border-radius: 2px;
+    transition: color 0.2s, border-color 0.2s, background 0.2s;
+    cursor: default;
+  }
+  .trait:hover {
+    color: var(--accent);
+    border-color: rgba(0,229,255,0.3);
+    background: var(--accent-glow);
+  }
+
+  .deco-corner {
+    position: absolute;
+    bottom: -16px; left: -16px;
+    width: 32px; height: 32px;
+    border-left: 1px solid var(--accent);
+    border-bottom: 1px solid var(--accent);
+    opacity: 0.3;
+  }
+
+  @media (max-width: 900px) {
+    .about-grid { grid-template-columns: 1fr; gap: 48px; }
+    .photo-wrap { aspect-ratio: 4 / 3; }
+  }
+</style>
