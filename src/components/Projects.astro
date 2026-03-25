@@ -1,66 +1,169 @@
 ---
+import { NoClientEntrypoint } from "astro/dist/core/errors/errors-data";
+
 const projects = [
   {
     id: 1,
     index: '01',
     title: 'Insomniacs',
-    tldr: "NOTE: Showcase purposes only.",
     type: 'Game Development',
+    period: 'Feb 2025 — Jul 2025',
     shortDesc: 'An educational life-simulation game raising awareness about insomnia among university students.',
-    description: 'Designed and developed an educational life-simulation game addressing the need for improved awareness about insomnia among university students using a game-based learning approach. Built solo in Unreal Engine 5 (Blueprints) with core simulation systems and research-backed mechanics.',
-    tags: ['Unreal Engine 5', 'Blueprints', 'Game Design', 'Research'],
-    images: ['/projects/insomniacs-1.png', '/projects/insomniacs-2.png', '/projects/insomniacs-3.png'],
-    link: null,
+    tldr: '⚠️ Showcase only — images are for visual reference. (Presentation in the Link)',
+    details: 'Designed and developed an educational life-simulation game to address the need for improved awareness about insomnia among university students using a game-based learning approach. Built solo in Unreal Engine 5 (Blueprints) with core simulation systems.',
+    tasks: [
+      '· Conducted analysis and design of learning objectives and mechanics.',
+      '· Implemented core systems and UI from start to finish in Unreal Engine 5 (Blueprints).',
+      '· Integrated assets and audio, performed functional/black-box testing.',
+      '· Conducted pre/post user testing and coordinated expert validation.',
+      '· Iterated prototype based on feedback.',
+    ],
+    results: [
+      '· Validated the game\'s effectiveness through user testing and expert evaluation.',
+      '· Demonstrated measurable improvement in student understanding of insomnia.',
+    ],
+    tags: ['Unreal Engine 5 (Blueprints)', 'Game Design', 'Research', 'Draw.io', 'GitHub'],
+    team: '1 person · Individual Developer',
+    images: ['/projects/insomniacs-1.png', '/projects/insomniacs-2.png', '/projects/insomniacs-3.png', '/projects/insomniacs-4.png', '/projects/insomniacs-5.png'],
+    link: "https://www.canva.com/design/DAGrjvX6J3U/fp5AZEktYFKJN7nOsCc6XA/edit",
   },
   {
     id: 2,
     index: '02',
-    title: 'Codelamp 3D Game Dev Bootcamp',
-    tldr: null,
+    title: 'Pakettt - Kurir antar Paket Parkour',
     type: 'Game Development',
-    shortDesc: 'Completed an intensive 3D game development bootcamp with a score of 97/100 — Mastered Distinction.',
-    description: 'Completed an intensive 3D game development bootcamp, mastering core game systems, mechanics, and pipeline workflows. Awarded Mastered Distinction with a final score of 97/100 — highest distinction available.',
-    tags: ['Unity', '3D Game Dev', 'Certified', 'Mastered Distinction'],
+    period: 'Oct 2025 — Dec 2025',
+    shortDesc: 'Completed an intensive 3D game development bootcamp with a personal score of 97/100 — Mastered Distinction.',
+    tldr: "🎮 Available to play on itch.io'",
+    details: 'Game Development 3D Bootcamp by Codelamp Indonesia. Covered core stages of game development including gameplay design, level creation, and Unity implementation. Applied skills in a team-based final project.',
+    tasks: [
+      '· Designed the core gameplay concept and level flow for the prototype.',
+      '· Created and polished a playable 3D level environment.',
+      '· Performed Quality Assurance to test gameplay flow, obstacles, and player interactions.',
+      '· Collaborated with programmers and artists to integrate gameplay mechanics and assets.',
+    ],
+    results: [
+      'Delivered a playable 3D game prototype with core mechanics, UI, and functional game systems.',
+    ],
+    tags: ['Unity (C#)', '3D Game Dev', 'VS Code','GitHub', 'Notion'],
+    team: '7 people · Sub-Leader',
     images: ['/projects/codelamp-1.png', '/projects/codelamp-2.png', '/projects/codelamp-3.png', '/projects/codelamp-4.png'],
     link: "https://seryxss.itch.io/pakeeet",
   },
   {
     id: 3,
     index: '03',
-    title: 'IRGL Mini-Games',
-    tldr: "NOTE: This capture represents the early development phase during my time as a team member.",
+    title: 'VR & AR Prototypes',
     type: 'Game Development',
-    shortDesc: 'Coordinated development and QA for 30+ Unity mini-games across multiple event cycles.',
-    description: 'Progressed from member to coordinator to team leader across multiple event cycles. Managed development and QA for 30+ Unity mini-games, led a 7-person special team, and delivered zero-critical-issue builds to 400+ participants.',
-    tags: ['Unity', 'C#', 'QA', 'Team Leadership', 'GitHub'],
-    images: ['/projects/irgl-1.png', '/projects/irgl-2.png', '/projects/irgl-3.png'],
+    period: 'Feb 2024 — May 2024',
+    shortDesc: 'VR hand-tracking stress-relief game and AR tilt-based mobile game — university course prototypes.',
+    tldr: '🎮 Available to play on itch.io (but needed the VR headset)',
+    details: 'Developed AR and VR prototypes focusing on immersive interactions. VR: A hand-tracking simulation game built in Unreal Engine 5 with Oculus integration. AR: A Unity-based mobile AR game using Vuforia where players tilt a device to control a ball through obstacles.',
+    tasks: [
+      'VR:',
+      '· Initialized GitHub repository and project setup.',
+      '· Implemented collision detection for clap gestures and mosquito hits, pinch detection for racket grab.',
+      '· Implemented mechanics for launching mosquitoes when slapped.',
+      'AR:',
+      '· Designed and implemented portal mechanic, button mechanic, one-way path mechanic, and DeadZone',
+      '· Contributed to testing and balancing gameplay flow.',
+    ],
+    results: [
+      '· Delivered two functional prototypes (VR hand-tracking, AR tilt-based control).',
+      '· Showcased potential applications of immersive technologies for education and entertainment.',
+    ],
+    tags: ['Unreal Engine 5', 'Unity', 'VR', 'AR', 'Oculus', 'Vuforia', 'GitHub'],
+    team: '4 people · Team Leader',
+    images: ['/projects/vrar-1.png', '/projects/vrar-2.png', '/projects/vrar-3.png'],
     link: "https://seryxss.itch.io",
   },
   {
     id: 4,
     index: '04',
-    title: 'Community Engagement Game',
-    tldr: "NOTE: Showcase purposes only.",
+    title: 'IRGL Mini-Games',
     type: 'Game Development',
+    period: 'Dec 2021 — Oct 2024',
+    shortDesc: 'Coordinated development and QA for 30+ Unity mini-games across multiple event cycles.',
+    tldr: '📌 Images shown are work as a member, Available to play on itch.io',
+    details: 'Progressed from member to coordinator and finally special team leader, contributing to Unity mini-game development while overseeing team activities, workflow, and project quality.',
+    tasks: [
+      '· Developed 2 Unity mini-games and collaborated on gameplay mechanics (2021–2022).',
+      '· Coordinated a 10-person team for 20+ mini-game projects, assigning tasks and guiding members (2022–2023).',
+      '· Led a 7-person special team, supervising development and QA for 10+ high-priority mini-games (2023–2024).',
+    ],
+    results: [
+      '· Took a leading role in developing and delivering 30+ polished Unity mini-games for 150+ teams (400+ participants).',
+      '· Improved project workflow, stability, and gameplay quality across all cycles.',
+    ],
+    tags: ['Unity C#', 'Visual Studio / VS Code', 'QA', 'Team Leadership', 'GitHub'],
+    team: 'Up to 10 people · Team Leader',
+    images: ['/projects/irgl-1.png', '/projects/irgl-2.png', '/projects/irgl-3.png'],
+    link: "https://seryxss.itch.io",
+  },
+  {
+    id: 5,
+    index: '05',
+    title: 'Life at Gang Dolly Surabaya',
+    type: 'Game Development',
+    period: 'Jul 2024 — Dec 2024',
     shortDesc: 'A game prototype developed during a university community engagement internship.',
-    description: 'Developed a game prototype during a university community engagement internship. Translated learning objectives into functional gameplay features and collaborated directly with community stakeholders to align the final design with user needs.',
-    tags: ['Unreal Engine 5', 'Game Design', 'Prototyping'],
+    tldr: '⚠️ Showcase only — images are for visual reference.',
+    details: 'Contributed as Game Developer in LEAP Community Engagement program, collaborating with community stakeholders to translate engagement goals into game features.',
+    tasks: [
+      '· Participated in requirement discussions with stakeholders.',
+      '· Implemented Minigames and Shop Systems mechanics in Unreal Engine 5(Blueprint).',
+      '· Conducted testing and refinement of implemented features.',
+      '· Coordinated with team members to ensure alignment with project goals.',
+    ],
+    results: [
+      '· Delivered a prototype that successfully demonstrated the intended objectives.',
+      '· Strengthened teamwork and communication by working closely with non-technical stakeholders.',
+    ],
+    tags: ['Unreal Engine 5', 'Game Design', 'Prototyping', 'GitHub'],
+    team: '3 people · Member',
     images: ['/projects/community-1.png', '/projects/community-2.png', '/projects/community-3.png'],
     link: null,
   },
   {
-    
-    id: 5,
-    index: '05',
-    title: 'Other Project Archive',
-    tldr: null,
+    id: 6,
+    index: '06',
+    title: 'A Handheld Water Ring Toss Game',
     type: 'Game Development',
-    shortDesc: 'A portfolio of game development projects, demonstrating a versatile mastery of the full development spectrum.',
-    description: 'This archive represents my journey across the full development spectrum—programming, design, and team coordination. I have led some of the creation of for various events, consistently delivering polished, well-tested builds that translate high-level vision into stable, playable reality',
-    tags: ['Unreal Engine 5', 'Unity', 'Game Design', 'VR & AR', 'Prototyping'],
-    images: ['/projects/itchio-1.png'],
-    link: "https://seryxss.itch.io",
-  }
+    period: '2024',
+    shortDesc: 'A physics-based arcade game inspired by classic handheld water ring toss toys.',
+    tldr: '🎮 Available to play on itch.io',
+    details: 'A nostalgic reimagining of the classic water-filled ring toss toy. Players use air bubbles to propel rings onto pegs, featuring physics-based movement and challenging levels.',
+    tasks: [
+      '· Implemented physics-based buoyancy and water resistance mechanics.',
+      '· Developed responsive bubble-pushing controls for mobile and desktop.',
+      '· Designed multiple levels with increasing difficulty and obstacles.',
+      '· Integrated sound effects and visual feedback for ring captures.',
+    ],
+    results: [
+      '· Successfully published a polished web-based version on itch.io.',
+      '· Achieved a satisfying mechanical feel that (almost fully) mimics real-world physics.',
+    ],
+    tags: ['Unity C#', 'Physics', 'Desktop/Web', 'itch.io'],
+    team: '1 person · Individual Developer',
+    images: ['/projects/water-1.png', '/projects/water-2.png', '/projects/water-3.png'],
+    link: 'https://seryxss.itch.io/aqua-rings',
+  },
+  {
+    id: 7, // Ensure this is unique
+    index: '07', 
+    title: 'PROTOTYPE ARCHIVE',
+    type: 'Game Development / Collection',
+    period: '2021 — Present',
+    shortDesc: 'A curated vault of 30+ Unity and Unreal prototypes, showcasing rapid development and QA excellence.',
+    tldr: '🚀 Explore the full collection on seryxss.itch.io',
+    details: 'Explore a curated collection of polished prototypes spanning 4+ years of continuous game development. This archive documents my evolution from solo developer to team leader, showcasing expertise across diverse engines (Unity, Unreal), platforms, and game design paradigms. Each project reflects a commitment to quality assurance, creative problem-solving, and rapid iterative development—core competencies that define my approach to game development.',
+    tasks: [null], // Placeholder since this is a collection rather than a single project],
+    results: [null],
+    tags: ['Unity', 'Unreal Engine', 'Collection', 'itch.io'],
+    team: 'Developer',
+    images: ['/projects/itchio-1.png'], 
+    link: 'https://seryxss.itch.io',
+  },
 ];
 
 const categories = ['All', 'Game Development'];
@@ -155,18 +258,40 @@ const categories = ['All', 'Game Development'];
     </div>
 
     <!-- Details -->
-    <div class="modal-details">
-      <div class="modal-meta">
-        <span class="modal-type mono" id="modal-type"></span>
-        <span class="modal-index mono" id="modal-index"></span>
+      <div class="modal-details">
+        <div class="modal-meta">
+          <span class="modal-type mono" id="modal-type"></span>
+          <span class="modal-index mono" id="modal-index"></span>
+        </div>
+        <h2 class="modal-title" id="modal-title"></h2>
+
+        <div class="modal-info-row">
+          <span class="modal-info" id="modal-period"></span>
+          <span class="modal-info" id="modal-team"></span>
+        </div>
+
+        <p class="modal-tldr" id="modal-tldr"></p>
+
+        <div class="modal-section">
+          <div class="modal-section-label">Development Details</div>
+          <p class="modal-desc" id="modal-details"></p>
+        </div>
+
+        <div class="modal-section">
+          <div class="modal-section-label">My Tasks</div>
+          <ul class="modal-list" id="modal-tasks"></ul>
+        </div>
+
+        <div class="modal-section">
+          <div class="modal-section-label">Results</div>
+          <ul class="modal-list" id="modal-results"></ul>
+        </div>
+
+        <div class="modal-tags" id="modal-tags"></div>
+        <a href="#" class="modal-link" id="modal-link" target="_blank" style="display:none">
+          View Project ↗
+        </a>
       </div>
-      <h2 class="modal-title" id="modal-title"></h2>
-      <p class="modal-tldr" id="modal-tldr"></p>
-      <p class="modal-desc" id="modal-desc"></p>
-      <div class="modal-tags" id="modal-tags"></div>
-      <a href="#" class="modal-link" id="modal-link" target="_blank" style="display:none">
-        View Project ↗
-      </a>
     </div>
   </div>
 </div>
@@ -393,7 +518,7 @@ const categories = ['All', 'Game Development'];
     border: 1px solid var(--border-hi);
     border-radius: 4px;
     width: 100%;
-    max-width: 720px;
+    max-width: 640px;
     max-height: 90vh;
     overflow-y: auto;
     position: relative;
@@ -423,7 +548,7 @@ const categories = ['All', 'Game Development'];
 
   .modal-carousel {
     position: relative;
-    aspect-ratio: 14/ 7; 
+    aspect-ratio: 16/ 9; 
     overflow: hidden;
     background: #050810; 
     border-radius: 6px 6px 0 0;
@@ -507,7 +632,7 @@ const categories = ['All', 'Game Development'];
   }
 
   /* Modal details */
-  .modal-details { padding: 28px 32px 32px; }
+  .modal-details { padding: 24px 28px 28px; }
   .modal-meta {
     display: flex;
     align-items: center;
@@ -527,21 +652,28 @@ const categories = ['All', 'Game Development'];
   }
   .modal-title {
     font-family: var(--font-display);
-    font-size: 40px;
+    font-size: 28px;
     color: var(--text);
     margin-bottom: 16px;
     line-height: 1;
   }
   .modal-tldr {
-    font-size: 10px;
-    color: var(--accent);
-    font-style: bold;
+    font-family: var(--font-mono);
+    font-size: 11px;
+    letter-spacing: 0.08em;
+    color: var(--text-muted);
+    background: rgba(0,229,255,0.05);
+    border: 1px solid rgba(0,229,255,0.2);
+    border-left: 3px solid var(--accent);
+    padding: 10px 14px;
+    border-radius: 2px;
     margin-bottom: 20px;
   }
-  .modal-desc {
-    font-size: 14px;
+  .modal-desc {;
+    font-family: var(--font-body);
+    font-size: 13px;
     color: var(--text-muted);
-    line-height: 1.8;
+    line-height: 1.6;
     margin-bottom: 20px;
   }
   .modal-tags {
@@ -550,6 +682,59 @@ const categories = ['All', 'Game Development'];
     gap: 8px;
     margin-bottom: 24px;
   }
+  .modal-info-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 16px;
+    margin-bottom: 20px;
+  }
+  .modal-info {
+    font-size: 11px;
+    letter-spacing: 0.1em;
+    color: var(--text-dim);
+    border: 1px solid var(--border);
+    padding: 4px 10px;
+    border-radius: 2px;
+  }
+  .modal-section {
+    margin-bottom: 20px;
+  }
+  .modal-section-label {
+    font-size: 10px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 10px;
+  }
+  .modal-list {
+    font-family: var(--font-body);
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    padding: 0;
+    margin: 0;
+  }
+
+  :global(.modal-list li) {
+    font-size: 13px;
+    color: var(--text-muted);
+    line-height: 1.6;
+    /* padding-left: 20px;  */
+    position: relative;
+  }
+
+  /* :global(.modal-list li::before) {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+
+    font-family: var(--font-mono), monospace;
+    font-weight: bold;
+    font-size: 12px;
+  } */
+
   :global(.modal-tag) {
     font-family: var(--font-mono);
     font-size: 11px;
@@ -569,8 +754,6 @@ const categories = ['All', 'Game Development'];
       border-color: var(--accent);
       background: var(--accent-glow);
   }
-
-
   .modal-link {
     font-family: var(--font-mono);
     font-size: 12px;
@@ -599,7 +782,6 @@ const categories = ['All', 'Game Development'];
       transparent
     );
   }
-
   .modal-link:hover { 
     opacity: 0.9;
     transform: translateY(-3px);
@@ -659,12 +841,43 @@ const categories = ['All', 'Game Development'];
       const project = projects.find(p => p.id === id);
       if (!project) return;
 
+      const tldrEl = document.getElementById('modal-tldr');
+      if (project.tldr) {
+        tldrEl.textContent = project.tldr;
+        tldrEl.style.display = 'block';
+      } else {
+        tldrEl.style.display = 'none';
+      }
+
       // Populate details
       document.getElementById('modal-type').textContent = project.type;
       document.getElementById('modal-index').textContent = project.index;
       document.getElementById('modal-title').textContent = project.title;
+      document.getElementById('modal-period').textContent = '📅 ' + project.period;
+      document.getElementById('modal-team').textContent = '👥 ' + project.team;
       document.getElementById('modal-tldr').textContent = project.tldr;
-      document.getElementById('modal-desc').textContent = project.description;
+      document.getElementById('modal-details').textContent = project.details;
+
+
+      const tasksList = document.getElementById('modal-tasks');
+      const tasksSection = tasksList.closest('.modal-section');
+      const validTasks = project.tasks.filter(t => t !== null && t !== undefined);
+      if (validTasks.length > 0) {
+        tasksList.innerHTML = validTasks.map(t => `<li>${t}</li>`).join('');
+        tasksSection.style.display = 'block';
+      } else {
+        tasksSection.style.display = 'none';
+      }
+
+      const resultsList = document.getElementById('modal-results');
+      const resultsSection = resultsList.closest('.modal-section');
+      const validResults = project.results.filter(r => r !== null && r !== undefined);
+      if (validResults.length > 0) {
+        resultsList.innerHTML = validResults.map(r => `<li>${r}</li>`).join('');
+        resultsSection.style.display = 'block';
+      } else {
+        resultsSection.style.display = 'none';
+      }
 
       // Tags
       const tagsEl = document.getElementById('modal-tags');
