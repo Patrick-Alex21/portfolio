@@ -62,6 +62,20 @@ body {
   cursor: none;
 }
 
+@media (hover: none), (pointer: coarse) {
+  * {
+    cursor: auto !important;
+  }
+
+  body {
+    cursor: auto;
+  }
+
+  .cursor {
+    display: none !important;
+  }
+}
+
 /* ── Custom Cursor ── */
 .cursor {
   position: fixed;

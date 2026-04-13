@@ -274,6 +274,7 @@
     border: 1px solid var(--border-hi);
     padding: 8px 14px;
     border-radius: 2px;
+    max-width: calc(100% - 32px);
   }
   .badge-dot {
     width: 6px; height: 6px;
@@ -365,12 +366,42 @@
 
   @media (max-width: 480px) {
     .card-header {
-    flex-direction: column-reverse; /* Put icon on top for mobile */
-    align-items: center;
-    text-align: center;
+      flex-direction: row;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      text-align: left;
     }
+
+    .card-quote {
+      min-width: 0;
+      font-size: 24px;
+      line-height: 1.1;
+      flex: 1;
+    }
+
+    .emblem-container {
+      transform: none;
+      display: flex;
+      justify-content: flex-end;
+      align-items: center;
+      flex-shrink: 0;
+    }
+
     .card-emblem {
-      width: 120px; /* Slightly smaller for mobile screens */
+      width: 96px;
+    }
+
+    .photo-nametag {
+      left: 12px;
+      right: 12px;
+      bottom: 12px;
+      padding: 8px 12px;
+    }
+
+    .photo-nametag .mono {
+      font-size: 9px !important;
+      letter-spacing: 0.12em !important;
     }
   }
 </style>
