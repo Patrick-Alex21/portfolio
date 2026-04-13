@@ -164,6 +164,54 @@ const projects = [
     images: ['/projects/itchio-1.png'], 
     link: 'https://seryxss.itch.io',
   },
+  {
+    id: 8,
+    index: '08',
+    title: 'Personal Portfolio Website',
+    type: 'Web Development',
+    period: '2026',
+    shortDesc: 'A personal website and portfolio showcasing my work and skills.',
+    tldr: [null],
+    details: 'A personal website built with Astro, designed to showcase my projects, skills, and experience in game development. The site features a clean, modern design with interactive elements and responsive layouts.',
+    tasks: [
+      '· Designed and developed the website using Astro, HTML, CSS, and JavaScript.',
+      '· Implemented a responsive layout to ensure optimal viewing on various devices.',
+      '· Created interactive elements to enhance user engagement and navigation.',
+      '· Optimized performance and accessibility for a seamless user experience.  ',
+    ],
+    results: [
+      'A polished personal website that effectively communicates my professional identity and portfolio to potential employers and collaborators.',
+    ],
+    tags: ['Astro', 'Web Development', 'Portfolio'],
+    team: 'Solo Developer',
+    images: ['/projects/website-1.png', '/projects/website-2.png', '/projects/website-3.png', '/projects/website-4.png', '/projects/website-5.png'], 
+    link: [null],
+  },
+  {
+    id: 9,
+    index: '09',
+    title: 'ARC Studio Website',
+    type: 'Web Development',
+    period: '2026',
+    shortDesc: 'A modern minimalist architectural studio website built to showcase ARC’s vision, projects, and design identity.',
+    tldr: 'For skill/portfolio showcase purposes only — not an actual website used.',
+    details: 'A responsive website for ARC, an architectural research collective focused on timeless design, innovative construction methods, and curated project presentation. Built with Astro, the site features a refined editorial-style layout, project-focused navigation, and a clean visual system that reflects the studio’s minimalist architectural identity.',
+    tasks: [
+      '· Designed and developed the website using Astro, HTML, TailwindCSS, and JavaScript.',
+      '· Created a structured multi-page experience for studio, project, and contact sections.',
+      '· Built responsive layouts and mobile navigation for smooth browsing across devices.',
+      '· Applied a clean architectural visual direction with strong typography, spacing, and imagery.',
+      '· Optimized the site structure for performance, readability, and portfolio presentation.',
+    ],
+    results: [
+      'A polished studio website that clearly communicates ARC’s brand, values, and architectural portfolio through a modern and professional digital experience.',
+    ],
+    tags: ['Astro JS', 'Tailwind CSS', 'Web Development', 'Architecture', 'Responsive Design'],
+    team: 'Solo Developer',
+    images: ['/projects/arc-1.png', '/projects/arc-2.png', '/projects/arc-3.png', 
+    '/projects/arc-4.png', '/projects/arc-5.png', '/projects/arc-6.png'],
+    link: 'https://arc-life.netlify.app',
+  },
 ];
 
 const categories = ['All', 'Game Development', 'Web Development'];
@@ -853,7 +901,7 @@ const categories = ['All', 'Game Development', 'Web Development'];
 
       // Populate details
       document.getElementById('modal-type').textContent = project.type;
-      document.getElementById('modal-index').textContent = project.index;
+      // document.getElementById('modal-index').textContent = project.index;
       document.getElementById('modal-title').textContent = project.title;
       document.getElementById('modal-period').textContent = '📅 ' + project.period;
       document.getElementById('modal-team').textContent = '👥 ' + project.team;
