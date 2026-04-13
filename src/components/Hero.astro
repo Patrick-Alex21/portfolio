@@ -242,7 +242,6 @@
     color: var(--accent);
     min-width: 2ch;
     display: inline-block;
-    flex-wrap: nowrap;
   }
 
   .role-prefix, .role-type {
@@ -312,17 +311,44 @@
     .hero-photo-bg { width: 100%; opacity: 0.3; mask-image: none; -webkit-mask-image: none; }
     .hero-side-label, .hero-socials { display: none; }
     .hero-name { font-size: clamp(52px, 16vw, 80px); }
-    .hero-inner { padding-left: 24px; }
-    .role-prefix, .role-type, .role-cursor { font-size: 16px; }
+    .hero-inner {
+      padding-left: 24px;
+      padding-right: 24px;
+    }
+
+    .hero-content {
+      margin-left: 0 !important;
+      max-width: 100%;
+    }
+
+    .hero-tag {
+      margin-bottom: 24px;
+    }
+
+    .hero-role {
+      flex-wrap: wrap;
+      align-items: baseline;
+      row-gap: 4px;
+      white-space: normal;
+      max-width: min(100%, 30ch);
+    }
+
+    .role-prefix, .role-type, .role-cursor {
+      font-size: clamp(14px, 4.5vw, 16px);
+    }
+
+    .role-type {
+      min-width: 0;
+      display: inline;
+      line-height: 1.5;
+      overflow-wrap: break-word;
+      word-break: normal;
+    }
 
     .scroll-hint {
       left: 44%;
       transform: translateX(-50%);
       bottom: 32px;
-    }
-
-    .hero-content {
-      margin-left: -30% !important;
     }
   }
 </style>
