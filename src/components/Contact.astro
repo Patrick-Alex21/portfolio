@@ -89,7 +89,10 @@ const contactLinks = [
     <!-- Bottom Section: Full Width Form -->
     <div class="contact-bottom">
       <!-- Netlify Contact Form -->
-      <form name="contact" method="POST" data-netlify={true} class="contact-form reveal" data-delay="300">
+      <form name="contact" method="POST" data-netlify={true} netlify-honeypot="bot-field" class="contact-form reveal" data-delay="300" id="contact-form">
+        <!-- Honeypot field (hidden from users, catches bots) -->
+        <input type="hidden" name="bot-field" />
+        
         <div class="form-group">
           <label for="name" class="form-label">Name</label>
           <input type="text" id="name" name="name" required class="form-input" aria-label="Your name" />
@@ -106,6 +109,10 @@ const contactLinks = [
           <label for="message" class="form-label">Message</label>
           <textarea id="message" name="message" rows="5" required class="form-input form-textarea" aria-label="Your message"></textarea>
         </div>
+        
+        <!-- Netlify Spam Filter (automatic) -->
+        <!-- This is automatically enabled in Netlify dashboard -->
+        
         <button type="submit" class="form-submit" aria-label="Send message">Send Message</button>
       </form>
     </div>
