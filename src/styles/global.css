@@ -5,7 +5,7 @@
 
 @import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Syne:wght@400;500;600;700;800&family=JetBrains+Mono:wght@300;400;500&display=swap');
 
-/* Add this to global.css */
+/* Custom Cursor - Hidden for accessibility */
 * {
   cursor: none !important;
 }
@@ -20,6 +20,13 @@ button,
 :global(.modal-tag), 
 .exp-item {
   cursor: none !important;
+}
+
+/* Show default cursor for keyboard users (no mouse) */
+@media (prefers-reduced-motion: reduce) {
+  * {
+    cursor: auto !important;
+  }
 }
 
 :root {
@@ -39,6 +46,44 @@ button,
   --font-display: 'Bebas Neue', sans-serif;
   --font-body:    'Syne', sans-serif;
   --font-mono:    'JetBrains Mono', monospace;
+}
+
+/* Accessibility: Skip Link */
+.skip-link {
+  position: absolute;
+  top: -40px;
+  left: 0;
+  background: var(--accent);
+  color: var(--black);
+  padding: 8px 16px;
+  text-decoration: none;
+  z-index: 100;
+  border-radius: 0 0 4px 0;
+  font-weight: 600;
+  font-size: 14px;
+}
+
+.skip-link:focus {
+  top: 0;
+}
+
+/* Accessibility: Focus Visible for Keyboard Navigation */
+button:focus-visible,
+a:focus-visible,
+input:focus-visible,
+textarea:focus-visible,
+select:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
+
+/* Accessibility: Reduced Motion */
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
 }
 
 *, *::before, *::after {

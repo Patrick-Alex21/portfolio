@@ -21,15 +21,54 @@ const {
     <meta property="og:url" content="https://Patrick-Portfolio-Dev.netlify.app" />
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
-    <meta property="og:image" content="/og-image.jpg" /> <meta property="twitter:card" content="summary_large_image" />
+    <meta property="og:image" content="https://d2xsxph8kpxj0f.cloudfront.net/310519663555758282/TM7djaEH7p6W88f4aQtczH/patrick-og-image-7fHdfg2Asa8mCnxXryDmAt.webp" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="twitter:card" content="summary_large_image" />
     <meta property="twitter:title" content={title} />
     <meta property="twitter:description" content={description} />
-    <meta property="twitter:image" content="/og-image.jpg" />
+    <meta property="twitter:image" content="https://d2xsxph8kpxj0f.cloudfront.net/310519663555758282/TM7djaEH7p6W88f4aQtczH/patrick-og-image-7fHdfg2Asa8mCnxXryDmAt.webp" />
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="description" content={description} />
+    <meta name="keywords" content="game developer, unity, unreal engine, game programmer, QA, game design" />
+    <meta name="author" content="Patrick Alexander" />
+    <meta name="robots" content="index, follow" />
     <link rel="icon" type="image/svg+xml" href="/PA.svg" />
+    <link rel="canonical" href="https://patrickalexander-dev.netlify.app" />
     <title>{title}</title>
+
+    <!-- JSON-LD Structured Data -->
+    <script type="application/ld+json">
+    {JSON.stringify({
+      "@context": "https://schema.org",
+      "@type": "Person",
+      "name": "Patrick Alexander",
+      "url": "https://patrickalexander-dev.netlify.app",
+      "jobTitle": "Game Developer & QA Specialist",
+      "image": "https://d2xsxph8kpxj0f.cloudfront.net/310519663555758282/TM7djaEH7p6W88f4aQtczH/patrick-og-image-7fHdfg2Asa8mCnxXryDmAt.webp",
+      "description": "Game Programmer specializing in Unity C# and Unreal Engine. Based in Indonesia. Open to full-time opportunities in game development and QA.",
+      "sameAs": [
+        "https://linkedin.com/in/patrick-alexander",
+        "https://github.com/seryxss",
+        "https://itch.io/profile/seryxss"
+      ],
+      "location": {
+        "@type": "Place",
+        "name": "Surabaya / Samarinda, Indonesia"
+      },
+      "knowsAbout": [
+        "Unity",
+        "Unreal Engine",
+        "Game Programming",
+        "Game Design",
+        "Quality Assurance",
+        "C#",
+        "Blueprints",
+        "3D Game Development"
+      ]
+    })}
+    </script>
 
     <!-- Preload fonts -->
      <link 
@@ -41,6 +80,15 @@ const {
     />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+
+    <!-- Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-XXXXXXXXXX');
+    </script>
   </head>
 
   <body>
@@ -52,8 +100,9 @@ const {
       <div class="cursor-ring"></div>
     </div>
 
+    <a href="#main" class="skip-link">Skip to main content</a>
     <Nav />
-    <main>
+    <main id="main" role="main">
       <slot />
     </main>
     <Footer />
