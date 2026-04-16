@@ -23,11 +23,11 @@ button,
 }
 
 /* Show default cursor for keyboard users (no mouse) */
-@media (prefers-reduced-motion: reduce) {
+/* @media (prefers-reduced-motion: reduce) {
   * {
     cursor: auto !important;
   }
-}
+} */
 
 :root {
   --black:       #050810;
@@ -78,13 +78,13 @@ select:focus-visible {
 }
 
 /* Accessibility: Reduced Motion */
-@media (prefers-reduced-motion: reduce) {
+/* @media (prefers-reduced-motion: n) {
   * {
     animation-duration: 0.01ms !important;
     animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;
   }
-}
+} */
 
 *, *::before, *::after {
   box-sizing: border-box;
