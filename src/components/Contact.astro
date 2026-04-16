@@ -40,10 +40,6 @@ const contactLinks = [
           projects. Always happy to discuss games, code, or creative ideas.
         </p>
 
-
-      </div>
-
-      <div class="contact-right">
         <!-- Netlify Contact Form -->
         <form name="contact" method="POST" netlify class="contact-form reveal" data-delay="300">
           <div class="form-group">
@@ -64,7 +60,9 @@ const contactLinks = [
           </div>
           <button type="submit" class="form-submit" aria-label="Send message">Send Message</button>
         </form>
+      </div>
 
+      <div class="contact-right">
         <div class="links-list">
           {contactLinks.map((link, i) => (
             <a
