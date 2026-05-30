@@ -127,7 +127,7 @@ const projects = [
     index: '06',
     title: 'A Handheld Aqua Ring Toss Game',
     type: 'Game Development',
-    period: '2024',
+    period: 'Jan 2026',
     shortDesc: 'A physics-based arcade game inspired by classic handheld water ring toss toys.',
     tldr: '🎮 Available to play on itch.io',
     details: 'A nostalgic reimagining of the classic water-filled ring toss toy. Players use air bubbles to propel rings onto pegs, featuring physics-based movement and challenging levels.',
@@ -151,7 +151,7 @@ const projects = [
     index: '07', 
     title: 'PROTOTYPE ARCHIVE',
     type: 'Game Development',
-    period: '2021 — Present',
+    period: 'Apr 2021 — Present',
     shortDesc: 'A curated vault of 30+ Unity and Unreal prototypes, showcasing rapid development and QA excellence.',
     tldr: '🚀 Explore the full collection on seryxss.itch.io',
     details: 'Explore a curated collection of polished prototypes spanning 4+ years of continuous game development. This archive documents my evolution from solo developer to team leader, showcasing expertise across diverse engines (Unity, Unreal), platforms, and game design paradigms. Each project reflects a commitment to quality assurance, creative problem-solving, and rapid iterative development—core competencies that define my approach to game development.',
@@ -167,7 +167,7 @@ const projects = [
     index: '08',
     title: 'Personal Portfolio Website',
     type: 'Web Development',
-    period: '2026',
+    period: 'Mar 2026 - Present',
     shortDesc: 'A personal website and portfolio showcasing my work and skills.',
     tldr: null,
     details: 'A personal website built with Astro, designed to showcase my projects, skills, and experience in game development. The site features a clean, modern design with interactive elements and responsive layouts.',
@@ -180,7 +180,7 @@ const projects = [
     results: [
       'A polished personal website that effectively communicates my professional identity and portfolio to potential employers and collaborators.',
     ],
-    tags: ['Astro', 'Web Development', 'Portfolio'],
+    tags: ['Astro JS', 'Web Development', 'Portfolio'],
     team: 'Solo Developer',
     images: ['/projects/website-1.png', '/projects/website-2.png', '/projects/website-3.png', '/projects/website-4.png', '/projects/website-5.png'], 
     link: null,
@@ -190,7 +190,7 @@ const projects = [
     index: '09',
     title: 'ARC Studio Website',
     type: 'Web Development',
-    period: '2026',
+    period: 'Apr 2026',
     shortDesc: 'A modern minimalist architectural studio website built to showcase ARC’s vision, projects, and design identity.',
     tldr: 'For skill/portfolio showcase purposes only — not an actual website used.',
     details: 'A responsive website for ARC, an architectural research collective focused on timeless design, innovative construction methods, and curated project presentation. Built with Astro, the site features a refined editorial-style layout, project-focused navigation, and a clean visual system that reflects the studio’s minimalist architectural identity.',
@@ -386,7 +386,10 @@ const categories = ['All', 'Game Development', 'Web Development'];
     border-radius: 4px;
     overflow: hidden;
     cursor: none;
-    transition: border-color 0.3s, transform 0.3s;
+    transition: border-color 0.3s, transform 0.3s, box-shadow 0.3s;
+    will-change: auto;
+    backface-visibility: hidden;
+    -webkit-font-smoothing: antialiased;
   }
   .project-card:hover {
     border-color: var(--accent);

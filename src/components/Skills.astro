@@ -8,7 +8,7 @@ const skills = [
   { name: 'Python', icon: 'python' },
   { name: 'Figma', icon: 'figma' },
   { name: 'Blender 3D', icon: 'blender' },
-  { name: 'Astro JS (HTML / CSS / JS)', icon: 'web' },
+  { name: 'Astro JS', icon: 'web' },
   { name: 'Visual Studio', icon: 'vs' },
   { name: 'VS Code', icon: 'vscode' },
   { name: 'Notion', icon: 'notion' },
@@ -69,15 +69,18 @@ const icons: Record<string, string> = {
     background: var(--surface-2);
     border: 1px solid var(--border);
     border-radius: 4px;
-    transition: border-color 0.2s, background 0.2s, transform 0.2s;
+    transition: border-color 0.3s, transform 0.3s, box-shadow 0.3s;
     animation: skillReveal 0.5s ease var(--delay, 0ms) both;
     cursor: default;
+    will-change: auto;
+    backface-visibility: hidden;
+    -webkit-font-smoothing: antialiased;
   }
-  .skill-card:hover {
+  /* .skill-card:hover {
     border-color: var(--accent);
     background: var(--accent-glow);
     transform: translateY(-4px);
-  }
+  } */
 
   @keyframes skillReveal {
     from { opacity: 0; transform: translateY(16px); }
@@ -91,7 +94,7 @@ const icons: Record<string, string> = {
     align-items: center;
     justify-content: center;
   }
-  .skill-card:hover .skill-icon { color: var(--accent); }
+  /* .skill-card:hover .skill-icon { color: var(--accent); } */
 
   .skill-name {
     font-family: var(--font-mono);
@@ -102,7 +105,7 @@ const icons: Record<string, string> = {
     text-align: center;
     transition: color 0.2s;
   }
-  .skill-card:hover .skill-name { color: var(--accent); }
+  /* .skill-card:hover .skill-name { color: var(--accent); } */
 
   @media (max-width: 900px) {
     .skills-grid { grid-template-columns: repeat(3, 1fr); }
