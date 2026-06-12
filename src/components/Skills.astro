@@ -53,6 +53,11 @@ const icons: Record<string, string> = {
 </section>
 
 <style>
+
+  #skills 
+  { 
+    padding-bottom: 8%; 
+  }
   .skills-grid {
     display: grid;
     grid-template-columns: repeat(5, 1fr);
@@ -70,7 +75,7 @@ const icons: Record<string, string> = {
     border: 1px solid var(--border);
     border-radius: 4px;
     transition: border-color 0.3s, transform 0.3s, box-shadow 0.3s;
-    animation: skillReveal 0.5s ease var(--delay, 0ms) both;
+    
     cursor: default;
     will-change: auto;
     backface-visibility: hidden;
