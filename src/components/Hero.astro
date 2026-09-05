@@ -9,7 +9,7 @@
   <div class="hero-scanlines"></div>
 
   <div class="hero-side-label">
-    <span class="side-text">IT Engineer</span>
+    <span class="side-text">Generalist Developer</span>
   </div>
 
   <div class="hero-socials">
@@ -32,8 +32,8 @@
   <div class="container hero-inner">
     <div class="hero-content">
       <div class="hero-tag">
-        <!-- <span class="hero-status"></span>
-        <span class="mono">AVAILABLE FOR WORK</span> -->
+        <span class="hero-status"></span>
+        <span class="mono">AVAILABLE FOR WORK</span>
       </div>
 
       <h1 class="hero-name">
@@ -41,11 +41,11 @@
         <span class="hero-name-outline">ALEXANDER</span>
       </h1>
 
-      <!-- <div class="hero-role">
+      <div class="hero-role">
         <span class="role-prefix">I'm a</span>
         <span id="role-type" class="role-type"></span>
         <span class="role-cursor">|</span>
-      </div> -->
+      </div>
 
       <!-- <p class="hero-sub">
         A game developer crafting interactive worlds<br/>
@@ -73,8 +73,8 @@
 
   .hero-photo-bg {
     position: absolute;
-    right: -200px;
-    width: 70%; height: 130%;
+    right: 20px;
+    width: 55%; height: 150%;
     background-image: url('/random.jpg');
     background-size: cover;
     background-position: center top;
@@ -91,7 +91,7 @@
   }
 
   .hero-photo-bg:hover {
-    filter: grayscale(0%) brightness(0.4) contrast(1.2); 
+    filter: grayscale(0%) brightness(0.4) contrast(1.2); /* "Heals" the image on hover */
     transform: scale(1.02);
     transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1);
   }
@@ -127,7 +127,7 @@
 
   .hero-side-label {
     position: absolute;
-    left: -10px; top: 50%;
+    left: -50px; top: 50%;
     transform: translateY(-50%) rotate(-90deg);
   }
   .side-text {
@@ -170,7 +170,7 @@
 
   .hero-content { 
     max-width: 800px;
-    margin-left: -10%; 
+    margin-left: -40%; 
   }
   .mono{
     font-size: 12px;
@@ -213,7 +213,7 @@
   .hero-name-solid { color: var(--text); }
   .hero-name-outline {
     color: transparent;
-    -webkit-text-stroke: 1.5px var(--accent);
+    -webkit-text-stroke: 1.5px var(--border-hi);
     transition: -webkit-text-stroke-color 0.3s;
   }
   .hero-name-outline:hover { -webkit-text-stroke-color: var(--accent); }
