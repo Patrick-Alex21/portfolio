@@ -9,8 +9,8 @@ tags:
   - "Game Design"
   - "Research"
 images:
-  - "/projects/insomniacs-1.png"
-  - "/projects/insomniacs-2.png"
+  - "/projects/insomniacs-1.webp"
+  - "/projects/insomniacs-2.webp"
 link: "https://www.canva.com/design/DAGrjvX6J3U/fp5AZEktYFKJN7nOsCc6XA/edit"
 ---
 

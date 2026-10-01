@@ -3,7 +3,6 @@
    Dark Cinematic · Game-Developer Aesthetic
    ============================================ */
 
-@import url("https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Syne:wght@400;500;600;700;800&family=JetBrains+Mono:wght@300;400;500&display=swap");
 
 /* Custom Cursor - Hidden for accessibility */
 * {
@@ -43,9 +42,6 @@ button,
   --accent: #00e5ff;
   --accent-dim: #009eb3;
   --accent-glow: rgba(0, 229, 255, 0.1);
-  --font-display: "Bebas Neue", sans-serif;
-  --font-body: "Syne", sans-serif;
-  --font-mono: "JetBrains Mono", monospace;
 }
 
 /* Accessibility: Skip Link */

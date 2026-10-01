@@ -22,7 +22,7 @@ const projects = [
     ],
     tags: ['Unreal Engine 5 (Blueprints)', 'Game Design', 'Research', 'Draw.io', 'GitHub'],
     team: '1 person · Individual Developer',
-    images: ['/projects/insomniacs-1.png', '/projects/insomniacs-2.png', '/projects/insomniacs-3.png', '/projects/insomniacs-4.png', '/projects/insomniacs-5.png'],
+    images: ['/projects/insomniacs-1.webp', '/projects/insomniacs-2.webp', '/projects/insomniacs-3.webp', '/projects/insomniacs-4.webp', '/projects/insomniacs-5.webp'],
     link: "https://www.canva.com/design/DAGrjvX6J3U/fp5AZEktYFKJN7nOsCc6XA/edit",
   },
   {
@@ -45,7 +45,7 @@ const projects = [
     ],
     tags: ['Unity (C#)', '3D Game Dev', 'VS Code','GitHub', 'Notion'],
     team: '7 people · Sub-Leader',
-    images: ['/projects/codelamp-1.png', '/projects/codelamp-2.png', '/projects/codelamp-3.png', '/projects/codelamp-4.png'],
+    images: ['/projects/codelamp-1.webp', '/projects/codelamp-2.webp', '/projects/codelamp-3.webp', '/projects/codelamp-4.webp'],
     link: "https://seryxss.itch.io/pakeeet",
   },
   {
@@ -72,7 +72,7 @@ const projects = [
     ],
     tags: ['Unreal Engine 5', 'Unity', 'VR', 'AR', 'Oculus', 'Vuforia', 'GitHub'],
     team: '4 people · Team Leader',
-    images: ['/projects/vrar-1.png', '/projects/vrar-2.png', '/projects/vrar-3.png'],
+    images: ['/projects/vrar-1.webp', '/projects/vrar-2.webp', '/projects/vrar-3.webp'],
     link: "https://seryxss.itch.io",
   },
   {
@@ -95,7 +95,7 @@ const projects = [
     ],
     tags: ['Unity C#', 'Visual Studio / VS Code', 'QA', 'Team Leadership', 'GitHub'],
     team: 'Up to 10 people · Team Leader',
-    images: ['/projects/irgl-1.png', '/projects/irgl-2.png', '/projects/irgl-3.png'],
+    images: ['/projects/irgl-1.webp', '/projects/irgl-2.webp', '/projects/irgl-3.webp'],
     link: "https://seryxss.itch.io",
   },
   {
@@ -119,7 +119,7 @@ const projects = [
     ],
     tags: ['Unreal Engine 5', 'Game Design', 'Prototyping', 'GitHub'],
     team: '3 people · Member',
-    images: ['/projects/community-1.png', '/projects/community-2.png', '/projects/community-3.png'],
+    images: ['/projects/community-1.webp', '/projects/community-2.webp', '/projects/community-3.webp'],
     link: null,
   },
   {
@@ -143,7 +143,7 @@ const projects = [
     ],
     tags: ['Unity C#', 'Physics', 'Desktop/Web', 'itch.io'],
     team: '1 person · Individual Developer',
-    images: ['/projects/water-1.png', '/projects/water-2.png', '/projects/water-3.png', '/projects/water-4.png'],
+    images: ['/projects/water-1.webp', '/projects/water-2.webp', '/projects/water-3.webp', '/projects/water-4.webp'],
     link: 'https://seryxss.itch.io/aqua-rings',
   },
   {
@@ -159,7 +159,7 @@ const projects = [
     results: [null],
     tags: ['Unity', 'Unreal Engine', 'Collection', 'itch.io'],
     team: 'Developer',
-    images: ['/projects/itchio-1.png'], 
+    images: ['/projects/itchio-1.webp'], 
     link: 'https://seryxss.itch.io',
   },
   {
@@ -182,7 +182,7 @@ const projects = [
     ],
     tags: ['Astro JS', 'Web Development', 'Portfolio'],
     team: 'Solo Developer',
-    images: ['/projects/website-1.png', '/projects/website-2.png', '/projects/website-3.png', '/projects/website-4.png', '/projects/website-5.png'], 
+    images: ['/projects/website-1.webp', '/projects/website-2.webp', '/projects/website-3.webp', '/projects/website-4.webp', '/projects/website-5.webp'], 
     link: null,
   },
   {
@@ -206,8 +206,8 @@ const projects = [
     ],
     tags: ['Astro JS', 'Tailwind CSS', 'Web Development', 'Architecture', 'Responsive Design'],
     team: 'Solo Developer',
-    images: ['/projects/arc-1.png', '/projects/arc-2.png', '/projects/arc-3.png', 
-    '/projects/arc-4.png', '/projects/arc-5.png', '/projects/arc-6.png'],
+    images: ['/projects/arc-1.webp', '/projects/arc-2.webp', '/projects/arc-3.webp', 
+    '/projects/arc-4.webp', '/projects/arc-5.webp', '/projects/arc-6.webp'],
     link: 'https://arc-life.netlify.app',
   },
 ];
@@ -240,12 +240,14 @@ const categories = ['All', 'Game Development', 'Web Development'];
         >
           <!-- Thumbnail -->
           <div class="card-thumb">
-            <img
+            <img 
               src={project.images[0]}
               alt={project.title}
               class="card-img"
               onload="this.classList.add('loaded')"
               onerror="this.classList.add('error')"
+              loading="lazy" 
+              decoding="async"
             />
             <div class="card-placeholder">
               <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
