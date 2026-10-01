@@ -1,79 +1,31 @@
 {
-  "hash": "3ec88071",
-  "configHash": "99ff5054",
-  "lockfileHash": "3f28efcc",
-  "browserHash": "6b84b98d",
+  "hash": "2bb38b75",
+  "configHash": "e2a68b93",
+  "lockfileHash": "1697c563",
+  "browserHash": "f4df191a",
   "optimized": {
     "astro > aria-query": {
       "src": "../../node_modules/aria-query/lib/index.js",
       "file": "astro___aria-query.js",
-      "fileHash": "e692a486",
+      "fileHash": "6fd41052",
       "needsInterop": true
     },
     "astro > axobject-query": {
       "src": "../../node_modules/axobject-query/lib/index.js",
       "file": "astro___axobject-query.js",
-      "fileHash": "f2ec62bf",
+      "fileHash": "99c4eada",
       "needsInterop": true
     },
     "astro > html-escaper": {
       "src": "../../node_modules/html-escaper/esm/index.js",
       "file": "astro___html-escaper.js",
-      "fileHash": "c39b49e8",
-      "needsInterop": false
-    },
-    "astro/runtime/client/dev-toolbar/entrypoint.js": {
-      "src": "../../node_modules/astro/dist/runtime/client/dev-toolbar/entrypoint.js",
-      "file": "astro_runtime_client_dev-toolbar_entrypoint__js.js",
-      "fileHash": "d4e4bdc6",
+      "fileHash": "6c55e1d1",
       "needsInterop": false
     }
   },
   "chunks": {
-    "toolbar-DYYDHFWX": {
-      "file": "toolbar-DYYDHFWX.js"
-    },
-    "ui-library-J6BFBCML": {
-      "file": "ui-library-J6BFBCML.js"
-    },
-    "chunk-4Y3AIMI7": {
-      "file": "chunk-4Y3AIMI7.js"
-    },
-    "astro-OWBQNLIU": {
-      "file": "astro-OWBQNLIU.js"
-    },
-    "chunk-455OVRXP": {
-      "file": "chunk-455OVRXP.js"
-    },
-    "audit-AYTBQUZQ": {
-      "file": "audit-AYTBQUZQ.js"
-    },
-    "chunk-S5JL2KLY": {
-      "file": "chunk-S5JL2KLY.js"
-    },
-    "chunk-FMKMA7FV": {
-      "file": "chunk-FMKMA7FV.js"
-    },
-    "xray-JNIFT5UN": {
-      "file": "xray-JNIFT5UN.js"
-    },
-    "chunk-CN3GUJYK": {
-      "file": "chunk-CN3GUJYK.js"
-    },
-    "chunk-NMRFGD2L": {
-      "file": "chunk-NMRFGD2L.js"
-    },
-    "settings-XNMSICJR": {
-      "file": "settings-XNMSICJR.js"
-    },
-    "chunk-VWQQRESG": {
-      "file": "chunk-VWQQRESG.js"
-    },
-    "chunk-67B4T67F": {
-      "file": "chunk-67B4T67F.js"
-    },
-    "chunk-5WRI5ZAA": {
-      "file": "chunk-5WRI5ZAA.js"
+    "chunk-BUSYA2B4": {
+      "file": "chunk-BUSYA2B4.js"
     }
   }
 }
