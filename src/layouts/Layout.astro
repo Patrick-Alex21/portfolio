@@ -134,11 +134,13 @@ const personSchema = {
       });
 
       function animateRing() {
-        rx += (mx - rx) * 0.5; 
-        ry += (my - ry) * 0.5;
-        // Use transform for the ring as well
-        ring.style.transform = `translate3d(${rx}px, ${ry}px, 0)`;
-        requestAnimationFrame(animateRing);
+        if (matchMedia('(pointer: fine)').matches) {
+          rx += (mx - rx) * 0.4; 
+          ry += (my - ry) * 0.4;
+          // Use transform for the ring as well
+          ring.style.transform = `translate3d(${rx}px, ${ry}px, 0)`;
+          requestAnimationFrame(animateRing);
+        }
       }
       animateRing();
 
