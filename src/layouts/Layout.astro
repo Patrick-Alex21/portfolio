@@ -12,25 +12,58 @@ const {
   title = 'Patrick Alexander — Portfolio',
   description = 'Game Developer in Samarinda / Surabaya, Indonesia, specializing in Unity, Unreal Engine, game design, and interactive experiences.',
 } = Astro.props;
+
+const personSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'Person',
+  name: 'Patrick Alexander',
+  url: 'https://patrickalexander-dev.netlify.app',
+  jobTitle: 'Game Developer and QA Specialist',
+  image: 'https://patrickalexander-dev.netlify.app/Thumbnail.png',
+  description:
+    'Game Developer specializing in Unity C# and Unreal Engine. Based in Indonesia. Open to full-time opportunities in game development and QA.',
+  sameAs: [
+    'https://linkedin.com/in/patrick-alexander21',
+    'https://github.com/seryxss',
+    'https://itch.io/profile/seryxss',
+  ],
+  location: {
+    '@type': 'Place',
+    name: 'Surabaya / Samarinda, Indonesia',
+  },
+  knowsAbout: [
+    'Unity',
+    'Unreal Engine',
+    'Game Programming',
+    'Game Design',
+    'Quality Assurance',
+    'C#',
+    'Blueprints',
+    '3D Game Development',
+    'Level Design',
+    'VR/AR Development',
+    'Web Development',
+  ],
+};
 ---
 
 <!doctype html>
 <html lang="en">
-  <meta>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta property="og:type" content="website" />
-    <meta property="og:url" content="https://Patrick-Portfolio-Dev.netlify.app" />
+    <meta property="og:url" content="https://patrickalexander-dev.netlify.app" />
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
-    <meta property="og:image" content="/Thumbnail.png" />
+    <meta property="og:image" content="https://patrickalexander-dev.netlify.app/Thumbnail.png" />
     <meta property="og:image:alt" content="Patrick Alexander portfolio" />
     <meta property="og:image:width" content="1200" />
     <meta property="og:image:height" content="630" />
     <meta property="twitter:card" content="summary_large_image" />
     <meta property="twitter:title" content={title} />
     <meta property="twitter:description" content={description} />
-    <meta property="twitter:image" content="https://d2xsxph8kpxj0f.cloudfront.net/310519663555758282/TM7djaEH7p6W88f4aQtczH/patrick-og-image-7fHdfg2Asa8mCnxXryDmAt.webp" />
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta property="twitter:image" content="https://patrickalexander-dev.netlify.app/Thumbnail.png" />
     <meta name="description" content={description} />
     <meta name="keywords" content="game developer, unity, unreal engine, game programmer, QA, game design" />
     <meta name="author" content="Patrick Alexander" />
@@ -40,32 +73,7 @@ const {
     <title>{title}</title>
 
     <!-- JSON-LD Structured Data -->
-    <script type="application/ld+json" set:html={JSON.stringify({
-      '@context': 'https://schema.org',
-      '@type': 'Person',
-      name: 'Patrick Alexander',
-      jobTitle: 'Game Developer',
-      address: {
-        '@type': 'PostalAddress',
-        addressLocality: 'Samarinda',
-        addressCountry: 'Indonesia'
-      },
-      url: 'https://patrickalexander-dev.netlify.app',
-      sameAs: [
-        'https://linkedin.com/in/patrick-alexander21'
-      ],
-      knowsAbout: [
-        'Game Development',
-        'Unity',
-        'Unreal Engine',
-        'C#',
-        'Blueprints',
-        'Game Design',
-        'Quality Assurance'
-      ]
-    })} />
-    <!-- </script> -->
-
+    <script type="application/ld+json" set:html={JSON.stringify(personSchema)} />
     <!-- Preload fonts -->
      <link 
       rel="preload" 
