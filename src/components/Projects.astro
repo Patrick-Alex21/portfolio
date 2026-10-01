@@ -241,7 +241,9 @@ const categories = ['All', 'Game Development', 'Web Development'];
           <!-- Thumbnail -->
           <div class="card-thumb">
             <img 
-              src={project.images[0]}
+              src={project.images[0].replace('/projects/', '/projects/thumbs/')}
+              width="870"
+              height="488"
               alt={project.title}
               class="card-img"
               onload="this.classList.add('loaded')"
@@ -410,7 +412,6 @@ const categories = ['All', 'Game Development', 'Web Development'];
     opacity: 1;
   }
   .project-card.reveal {
-    /* Combine the reveal transition with your hover transition */
     transition: 
       opacity 0.6s ease-out, 
       transform 0.7s cubic-bezier(0.16, 1, 0.3, 1),
