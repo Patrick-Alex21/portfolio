@@ -13,6 +13,8 @@ const {
   description = 'Game Developer in Samarinda / Surabaya, Indonesia, specializing in Unity, Unreal Engine, game design, and interactive experiences.',
 } = Astro.props;
 
+const canonical = new URL(Astro.url.pathname, Astro.site).href;
+
 const personSchema = {
   '@context': 'https://schema.org',
   '@type': 'Person',
@@ -53,7 +55,7 @@ const personSchema = {
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta property="og:type" content="website" />
-    <meta property="og:url" content="https://patrickalexander-dev.netlify.app" />
+    <meta property="og:url" content={canonical} />
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
     <meta property="og:image" content="https://patrickalexander-dev.netlify.app/Thumbnail.png" />
@@ -69,8 +71,9 @@ const personSchema = {
     <meta name="author" content="Patrick Alexander" />
     <meta name="robots" content="index, follow" />
     <link rel="icon" type="image/svg+xml" href="/PA.svg" />
-    <link rel="canonical" href="https://patrickalexander-dev.netlify.app" />
+    <link rel="canonical" href={canonical} />
     <title>{title}</title>
+    <slot name="head" />
 
     <!-- JSON-LD Structured Data -->
     <script type="application/ld+json" set:html={JSON.stringify(personSchema)} />
