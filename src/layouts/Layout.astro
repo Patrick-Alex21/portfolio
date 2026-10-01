@@ -30,7 +30,7 @@ const personSchema = {
     'https://github.com/seryxss',
     'https://itch.io/profile/seryxss',
   ],
-  location: {
+  homeLocation: {
     '@type': 'Place',
     name: 'Surabaya / Samarinda, Indonesia',
   },
@@ -86,9 +86,14 @@ const personSchema = {
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-GVC7WXFKFT"></script>
     <script is:inline>
       window.dataLayer = window.dataLayer || [];
-      function gtag(){window.dataLayer.push(arguments);}
+      function gtag(){dataLayer.push(arguments);}
       gtag('js', new Date());
       gtag('config', 'G-GVC7WXFKFT');
+      addEventListener('load', () => setTimeout(() => {
+        const s = document.createElement('script');
+        s.src = 'https://www.googletagmanager.com/gtag/js?id=G-GVC7WXFKFT';
+        document.head.appendChild(s);
+      }, 2000));
     </script>
   </head>
 

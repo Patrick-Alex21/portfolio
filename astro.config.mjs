@@ -7,6 +7,7 @@ const isNetlifyBuild =
 
 export default defineConfig({
   site: 'https://patrickalexander-dev.netlify.app',
+  build: { inlineStylesheets: 'always' },
   integrations: [sitemap()],
   ...(isNetlifyBuild ? { adapter: netlify() } : {}),
   fonts: [
