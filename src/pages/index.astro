@@ -6,11 +6,16 @@ import Skills from '../components/Skills.astro';
 import Projects from '../components/Projects.astro';
 import Experience from '../components/Experience.astro';
 import Contact from '../components/Contact.astro';
+
+
+const title = 'Patrick Alexander — Game Developer Indonesia (Samarinda / Surabaya) | Unity & Unreal Engine Portfolio';
+const description =
+  'Explore Patrick Alexander’s game development projects, Unity and Unreal Engine work, prototypes, and interactive experiences.';
 ---
 
 <Layout
-  title="Patrick Alexander — Game Developer"
-  description="Game Programmer specializing in Unity C# and Unreal Engine. Based in Indonesia. Open to full-time opportunities."
+  title={title}
+  description={description}
 >
   <Hero />
   <About />

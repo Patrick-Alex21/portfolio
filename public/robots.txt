@@ -1,5 +1,4 @@
 User-agent: *
 Allow: /
-Disallow: 
 
-Sitemap: https://patrickalexander-dev.netlify.app/sitemap.xml
+Sitemap: https://patrickalexander-dev.netlify.app/sitemap-index.xml
