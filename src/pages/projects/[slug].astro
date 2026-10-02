@@ -4,7 +4,9 @@ import type { CollectionEntry } from 'astro:content';
 import Layout from '../../layouts/Layout.astro';
 
 export async function getStaticPaths() {
-  const all: CollectionEntry<'projects'>[] = (await getCollection('projects')).sort((a: { id: string; }, b: { id: any; }) => a.id.localeCompare(b.id));
+    const all: CollectionEntry<'projects'>[] = (await getCollection('projects')).sort(
+    (a: CollectionEntry<'projects'>, b: CollectionEntry<'projects'>) => a.data.order - b.data.order
+  );
   return all.map((project: CollectionEntry<'projects'>, i: number) => ({
     params: { slug: project.id },
     props: { project, prev: all[i - 1], next: all[i + 1] },
@@ -19,7 +21,7 @@ interface Props {
 
 const { project, prev, next } = Astro.props;
 const { Content } = await render(project);
-const { title, type, period, shortDesc, tags, images, link } = project.data;
+const { title, type, period, team, note, shortDesc, tags, images, link } = project.data;
 const [cover, ...shots] = images;
 ---
 
@@ -28,12 +30,7 @@ const [cover, ...shots] = images;
     <a class="back mono" href="/#projects">&larr; Back to projects</a>
 
     <header class:list={['cover', { empty: !cover }]}>
-      {cover && (
-        <button class="cover-btn" type="button" data-shot={cover} aria-label={`Open ${title} screenshots`}>
-          <img src={cover} alt={`${title} screenshot 1`} width="1200" height="675" fetchpriority="high" decoding="async" />
-          {images.length > 1 && <span class="cover-count mono">{images.length} images</span>}
-        </button>
-      )}
+      {cover && <img src={cover} alt={`${title} screenshot 1`} width="1200" height="675" fetchpriority="high" decoding="async" />}
       <div class="cover-title">
         <h1>{title}</h1>
       </div>
@@ -43,15 +40,19 @@ const [cover, ...shots] = images;
       <aside class="spec">
         <dl>
           <div>
-            <dt>type</dt>
+            <dt>Type</dt>
             <dd>{type}</dd>
           </div>
           <div>
-            <dt>period</dt>
+            <dt>Period</dt>
             <dd>{period}</dd>
           </div>
+            <div>
+              <dt>Team</dt>
+              <dd>{team}</dd>
+            </div>
           <div class="stack">
-            <dt>stack</dt>
+            <dt>Stack</dt>
             <dd>
               <ul class="tags">
                 {tags.map((tag: string) => <li>{tag}</li>)}
@@ -59,7 +60,8 @@ const [cover, ...shots] = images;
             </dd>
           </div>
         </dl>
-        {link && <a class="cta" href={link} target="_blank" rel="noopener noreferrer">View project</a>}
+          {link && <a class="btn-shine" href={link} target="_blank" rel="noopener noreferrer">View Project &#8599;</a>}
+          {note && <p class="note">{note}</p>}
       </aside>
 
       <div class="content">
@@ -75,7 +77,7 @@ const [cover, ...shots] = images;
           {shots.map((src: string, n: number) => (
             <li>
               <button type="button" data-shot={src} aria-label={`Open screenshot ${n + 2}`}>
-                <img src={src} alt={`${title} screenshot ${n + 2}`} width="600" height="375" loading="lazy" decoding="async" />
+                <img src={src} alt={`${title} screenshot ${n + 2}`} loading="lazy" decoding="async" />
               </button>
             </li>
           ))}
@@ -100,14 +102,14 @@ const [cover, ...shots] = images;
       </nav>
     )}
 
-    {images.length > 0 && (
-      <div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-label={`${title} screenshots`} hidden>
-        <button class="lb-close mono" type="button" aria-label="Close">Close</button>
-        {images.length > 1 && <button class="lb-nav lb-prev" type="button" aria-label="Previous image">&lsaquo;</button>}
-        <img id="lb-img" alt="" />
-        {images.length > 1 && <button class="lb-nav lb-next" type="button" aria-label="Next image">&rsaquo;</button>}
-        <p class="lb-count mono" id="lb-count"></p>
-      </div>
+    {shots.length > 0 && (
+    <div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-label={`${title} screenshots`} hidden>
+      <button class="lb-close mono" type="button" aria-label="Close">Close</button>
+      {shots.length > 1 && <button class="lb-nav lb-prev" type="button" aria-label="Previous image">&lsaquo;</button>}
+      <img id="lb-img" alt="" />
+      {shots.length > 1 && <button class="lb-nav lb-next" type="button" aria-label="Next image">&rsaquo;</button>}
+      <p class="lb-count mono" id="lb-count"></p>
+    </div>
     )}
   </article>
 </Layout>
@@ -125,7 +127,7 @@ const [cover, ...shots] = images;
     const show = (n: number) => {
       i = (n + triggers.length) % triggers.length;
       img.src = triggers[i].dataset.shot ?? '';
-      img.alt = `Screenshot ${i + 1}`;
+      img.alt = `Screenshot ${i + 2}`;
       count.textContent = `${i + 1} / ${triggers.length}`;
     };
     const open = (n: number) => {
@@ -170,12 +172,7 @@ const [cover, ...shots] = images;
     content: ''; position: absolute; inset: 0; pointer-events: none;
     background: linear-gradient(to top, rgba(5, 8, 16, 0.96) 0%, rgba(5, 8, 16, 0.55) 38%, rgba(5, 8, 16, 0) 70%);
   }
-  .cover-btn { position: absolute; inset: 0; display: block; width: 100%; height: 100%; padding: 0; border: 0; background: none; }
-  .cover-btn img { width: 100%; height: 100%; object-fit: cover; }
-  .cover-count {
-    position: absolute; top: 1rem; right: 1rem; z-index: 2; padding: 0.35rem 0.7rem; font-size: 0.75rem;
-    color: var(--text); background: rgba(5, 8, 16, 0.75); border: 1px solid var(--border-hi);
-  }
+  .cover > img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
   .cover-title { position: absolute; z-index: 1; left: clamp(1.25rem, 4vw, 3rem); right: clamp(1.25rem, 4vw, 3rem); bottom: clamp(1.25rem, 4vw, 2.5rem); pointer-events: none; }
   .cover.empty .cover-title { position: relative; left: 0; right: 0; bottom: 0; padding: 4rem clamp(1.25rem, 4vw, 3rem) 2rem; }
   h1 { font-size: clamp(2.6rem, 8vw, 5.5rem); line-height: 0.95; color: var(--text); }
@@ -188,12 +185,8 @@ const [cover, ...shots] = images;
   dd { margin: 0; color: var(--text); }
   .tags { display: flex; flex-wrap: wrap; gap: 0.4rem; margin: 0; padding: 0; list-style: none; }
   .tags li { padding: 0.25rem 0.6rem; font-family: var(--font-mono); font-size: 0.75rem; color: var(--text-muted); border: 1px solid var(--border-hi); border-radius: 2px; }
-  .cta {
-    display: inline-block; padding: 0.7rem 1.2rem; font-family: var(--font-mono); font-size: 0.85rem;
-    color: var(--accent); border: 1px solid var(--accent); transition: background 0.2s, color 0.2s;
-  }
-  .cta:hover { background: var(--accent); color: var(--black); }
 
+  .content .lead { max-width: 34em; margin: 0 0 2.5rem; font-size: clamp(1.2rem, 2.2vw, 1.5rem); line-height: 1.5; color: var(--text); }
   .lead { max-width: 34em; margin: 0 0 2.5rem; font-size: clamp(1.2rem, 2.2vw, 1.5rem); line-height: 1.5; color: var(--text); }
   .content :global(h2) { margin: 3rem 0 1rem; padding-top: 1.5rem; font-size: 1.9rem; border-top: 1px solid var(--border); }
   .content :global(p) { max-width: 40em; font-size: 1.05rem; line-height: 1.8; color: var(--text-muted); }
@@ -207,10 +200,9 @@ const [cover, ...shots] = images;
   /* Screenshots */
   .shots { margin-top: 5rem; }
   .shots h2 { margin-bottom: 1.5rem; font-size: 1.9rem; }
-  .shots ul { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 1rem; margin: 0; padding: 0; list-style: none; }
-  .shots button { display: block; width: 100%; padding: 0; overflow: hidden; background: var(--surface-2); border: 1px solid var(--border-hi); transition: border-color 0.2s; }
+  .shots ul { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); align-items: start; gap: 1rem; margin: 0; padding: 0; list-style: none; }  .shots button { display: block; width: 100%; padding: 0; overflow: hidden; background: var(--surface-2); border: 1px solid var(--border-hi); transition: border-color 0.2s; }
   .shots button:hover { border-color: var(--accent); }
-  .shots img { width: 100%; aspect-ratio: 16 / 10; object-fit: cover; }
+  .shots img { display: block; width: 100%; height: auto; }
 
   /* Prev / next */
   .pager { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-top: 5rem; padding-top: 2rem; border-top: 1px solid var(--border); }
@@ -232,8 +224,9 @@ const [cover, ...shots] = images;
   .lb-next { right: 1rem; }
   .lb-count { position: absolute; bottom: 1rem; left: 50%; transform: translateX(-50%); font-size: 0.8rem; color: var(--text-muted); }
 
+  .note { margin: 1rem 0 0; font-size: 0.8rem; line-height: 1.6; color: var(--text-muted); }
+
   a:focus-visible, button:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
-  .cover-btn:focus-visible { outline-offset: -4px; }
 
   @media (max-width: 860px) {
     .page { padding: 7rem 20px 4rem; }

@@ -1,9 +1,3 @@
-/* ============================================
-   GLOBAL STYLES — PATRICK ALEXANDER PORTFOLIO
-   Dark Cinematic · Game-Developer Aesthetic
-   ============================================ */
-
-
 /* Custom Cursor - Hidden for accessibility */
 * {
   cursor: none !important;
@@ -164,6 +158,20 @@ body:has(.project-card:hover) .cursor-ring {
   border-width: 2px;
   background: var(--accent-glow);
 }
+
+/* ── Button Shine Effect ── */
+.btn-shine {
+  position: relative; display: inline-flex; overflow: hidden; padding: 10px 20px; border-radius: 4px;
+  font-family: var(--font-mono); font-size: 12px; letter-spacing: 0.12em; text-transform: uppercase;
+  color: var(--black); background: var(--accent);
+  transition: opacity 0.2s, transform 0.2s, box-shadow 0.2s;
+}
+.btn-shine::after {
+  content: ''; position: absolute; top: 0; left: -100%; width: 100%; height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+}
+.btn-shine:hover { opacity: 0.9; transform: translateY(-3px); box-shadow: 0 12px 40px rgba(0, 229, 255, 0.25); }
+.btn-shine:hover::after { left: 100%; transition: left 0.7s ease-in-out; }
 
 /* ── Typography ── */
 h1,

@@ -1,5 +1,8 @@
 ---
 title: "Insomniacs"
+order: 1
+team: "1 person, Individual Developer"
+note: "Showcase only. Images are for visual reference."
 type: "Game Development"
 period: "Feb 2025 - Jul 2025"
 shortDesc: "An educational life-simulation game raising awareness about insomnia among university students."
@@ -11,6 +14,9 @@ tags:
 images:
   - "/projects/insomniacs-1.webp"
   - "/projects/insomniacs-2.webp"
+  - "/projects/insomniacs-3.webp"
+  - "/projects/insomniacs-4.webp"
+  - "/projects/insomniacs-5.webp"
 link: "https://www.canva.com/design/DAGrjvX6J3U/fp5AZEktYFKJN7nOsCc6XA/edit"
 ---
 
