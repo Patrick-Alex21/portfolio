@@ -18,13 +18,6 @@ const description =
   description={description}
 >
   <link slot="head" rel="preload" as="image" href="/HeroPic.webp" fetchpriority="high" />
-    <script slot="head" type="application/ld+json" set:html={JSON.stringify({
-    '@context': 'https://schema.org',
-    '@type': 'WebSite',
-    name: 'Patrick Alexander',
-    alternateName: ['Patrick Alexander Portfolio', 'Patrick Alex'],
-    url: 'https://patrickalexander-dev.netlify.app/',
-  })} />
 
   <Hero />
   <About />
