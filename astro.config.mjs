@@ -18,4 +18,9 @@ export default defineConfig({
   vite: {
     cacheDir: './.vite-cache',
   },
+
+  redirects: {
+    'https://netlify.app': 'https://patrick-alexander.dev',
+    'https://netlify.app/[...path]': 'https://patrick-alexander.dev/[...path]',
+  }
 });
