@@ -1,53 +1,245 @@
 ---
-import { getCollection, render } from 'astro:content'; import type { CollectionEntry } from 'astro:content';
+import { getCollection, render } from 'astro:content';
+import type { CollectionEntry } from 'astro:content';
 import Layout from '../../layouts/Layout.astro';
 
 export async function getStaticPaths() {
-  const projects = await getCollection('projects');
-  return projects.map((project: CollectionEntry<'projects'>) => ({
+  const all: CollectionEntry<'projects'>[] = (await getCollection('projects')).sort((a: { id: string; }, b: { id: any; }) => a.id.localeCompare(b.id));
+  return all.map((project: CollectionEntry<'projects'>, i: number) => ({
     params: { slug: project.id },
-    props: { project },
+    props: { project, prev: all[i - 1], next: all[i + 1] },
   }));
 }
 
-const { project } = Astro.props as { project: CollectionEntry<'projects'> };
+interface Props {
+  project: CollectionEntry<'projects'>;
+  prev?: CollectionEntry<'projects'>;
+  next?: CollectionEntry<'projects'>;
+}
+
+const { project, prev, next } = Astro.props;
 const { Content } = await render(project);
 const { title, type, period, shortDesc, tags, images, link } = project.data;
+const [cover, ...shots] = images;
 ---
 
-<Layout title={`${title} - Patrick Alexander`} description={shortDesc}>
-  <article class="project-page">
-    <a class="project-back" href="/#projects">&lt;- Back to projects</a>
-    <header class="project-header">
-      <p class="eyebrow">{type} &middot; {period}</p>
-      <h1>{title}</h1>
-      <p class="project-summary">{shortDesc}</p>
-      <div class="project-tags">
-        {tags.map((tag: string) => <span>{tag}</span>)}
+<Layout title={`${title} | Patrick Alexander`} description={shortDesc}>
+  <article class="page">
+    <a class="back mono" href="/#projects">&larr; Back to projects</a>
+
+    <header class:list={['cover', { empty: !cover }]}>
+      {cover && (
+        <button class="cover-btn" type="button" data-shot={cover} aria-label={`Open ${title} screenshots`}>
+          <img src={cover} alt={`${title} screenshot 1`} width="1200" height="675" fetchpriority="high" decoding="async" />
+          {images.length > 1 && <span class="cover-count mono">{images.length} images</span>}
+        </button>
+      )}
+      <div class="cover-title">
+        <h1>{title}</h1>
       </div>
-      {link && <a class="project-link" href={link} target="_blank" rel="noreferrer">View project -&gt;</a>}
     </header>
+
+    <div class="body">
+      <aside class="spec">
+        <dl>
+          <div>
+            <dt>type</dt>
+            <dd>{type}</dd>
+          </div>
+          <div>
+            <dt>period</dt>
+            <dd>{period}</dd>
+          </div>
+          <div class="stack">
+            <dt>stack</dt>
+            <dd>
+              <ul class="tags">
+                {tags.map((tag: string) => <li>{tag}</li>)}
+              </ul>
+            </dd>
+          </div>
+        </dl>
+        {link && <a class="cta" href={link} target="_blank" rel="noopener noreferrer">View project</a>}
+      </aside>
+
+      <div class="content">
+        <p class="lead">{shortDesc}</p>
+        <Content />
+      </div>
+    </div>
+
+    {shots.length > 0 && (
+      <section class="shots" aria-labelledby="shots-title">
+        <h2 id="shots-title">Screenshots</h2>
+        <ul>
+          {shots.map((src: string, n: number) => (
+            <li>
+              <button type="button" data-shot={src} aria-label={`Open screenshot ${n + 2}`}>
+                <img src={src} alt={`${title} screenshot ${n + 2}`} width="600" height="375" loading="lazy" decoding="async" />
+              </button>
+            </li>
+          ))}
+        </ul>
+      </section>
+    )}
+
+    {(prev || next) && (
+      <nav class="pager" aria-label="More projects">
+        {prev ? (
+          <a class="prev" href={`/projects/${prev.id}`}>
+            <span class="mono">Previous</span>
+            <strong>{prev.data.title}</strong>
+          </a>
+        ) : <span />}
+        {next ? (
+          <a class="next" href={`/projects/${next.id}`}>
+            <span class="mono">Next</span>
+            <strong>{next.data.title}</strong>
+          </a>
+        ) : <span />}
+      </nav>
+    )}
+
     {images.length > 0 && (
-      <div class="project-gallery">
-        {images.map((image: string) => <img src={image} alt={`${title} screenshot`} loading="lazy" />)}
+      <div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-label={`${title} screenshots`} hidden>
+        <button class="lb-close mono" type="button" aria-label="Close">Close</button>
+        {images.length > 1 && <button class="lb-nav lb-prev" type="button" aria-label="Previous image">&lsaquo;</button>}
+        <img id="lb-img" alt="" />
+        {images.length > 1 && <button class="lb-nav lb-next" type="button" aria-label="Next image">&rsaquo;</button>}
+        <p class="lb-count mono" id="lb-count"></p>
       </div>
     )}
-    <div class="project-content"><Content /></div>
   </article>
 </Layout>
 
+<script>
+  const triggers = Array.from(document.querySelectorAll<HTMLElement>('[data-shot]'));
+  const box = document.getElementById('lightbox');
+  const img = document.getElementById('lb-img') as HTMLImageElement | null;
+  const count = document.getElementById('lb-count');
+
+  if (box && img && count && triggers.length) {
+    let i = 0;
+    let last: HTMLElement | null = null;
+
+    const show = (n: number) => {
+      i = (n + triggers.length) % triggers.length;
+      img.src = triggers[i].dataset.shot ?? '';
+      img.alt = `Screenshot ${i + 1}`;
+      count.textContent = `${i + 1} / ${triggers.length}`;
+    };
+    const open = (n: number) => {
+      last = triggers[n];
+      show(n);
+      box.hidden = false;
+      document.body.style.overflow = 'hidden';
+      box.querySelector<HTMLElement>('.lb-close')?.focus();
+    };
+    const close = () => {
+      box.hidden = true;
+      document.body.style.overflow = '';
+      last?.focus();
+    };
+
+    triggers.forEach((t, n) => t.addEventListener('click', () => open(n)));
+    box.querySelector('.lb-close')?.addEventListener('click', close);
+    box.querySelector('.lb-prev')?.addEventListener('click', () => show(i - 1));
+    box.querySelector('.lb-next')?.addEventListener('click', () => show(i + 1));
+    box.addEventListener('click', (e) => {
+      if (e.target === box) close();
+    });
+    document.addEventListener('keydown', (e) => {
+      if (box.hidden) return;
+      if (e.key === 'Escape') close();
+      if (e.key === 'ArrowLeft') show(i - 1);
+      if (e.key === 'ArrowRight') show(i + 1);
+    });
+  }
+</script>
+
 <style>
-  .project-page { max-width: 980px; margin: 0 auto; padding: 9rem 2rem 6rem; }
-  .project-back { color: var(--muted, #999); text-decoration: none; }
-  .project-header { margin: 3rem 0; }
-  .eyebrow { color: var(--accent); text-transform: uppercase; letter-spacing: .12em; font-size: .8rem; }
-  h1 { font-size: clamp(3rem, 8vw, 6rem); line-height: .95; margin: 1rem 0; }
-  .project-summary { max-width: 650px; font-size: 1.25rem; color: var(--muted, #999); }
-  .project-tags { display: flex; flex-wrap: wrap; gap: .5rem; margin: 2rem 0; }
-  .project-tags span { border: 1px solid currentColor; border-radius: 999px; padding: .4rem .8rem; font-size: .8rem; }
-  .project-link { color: var(--accent); }
-  .project-gallery { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 1rem; }
-  .project-gallery img { width: 100%; border-radius: 1rem; }
-  .project-content { max-width: 680px; margin: 4rem auto 0; line-height: 1.7; }
-  .project-content :global(h2) { margin-top: 3rem; }
+  .page { max-width: 1100px; margin: 0 auto; padding: 8.5rem 40px 5rem; }
+
+  .back { display: inline-block; margin-bottom: 1.5rem; font-size: 0.85rem; color: var(--text-muted); transition: color 0.2s; }
+  .back:hover { color: var(--accent); }
+
+  /* Cover: the one bold moment. A game title card. */
+  .cover { position: relative; aspect-ratio: 16 / 9; overflow: hidden; background: var(--surface-2); border: 1px solid var(--border-hi); }
+  .cover.empty { aspect-ratio: auto; min-height: 260px; }
+  .cover::after {
+    content: ''; position: absolute; inset: 0; pointer-events: none;
+    background: linear-gradient(to top, rgba(5, 8, 16, 0.96) 0%, rgba(5, 8, 16, 0.55) 38%, rgba(5, 8, 16, 0) 70%);
+  }
+  .cover-btn { position: absolute; inset: 0; display: block; width: 100%; height: 100%; padding: 0; border: 0; background: none; }
+  .cover-btn img { width: 100%; height: 100%; object-fit: cover; }
+  .cover-count {
+    position: absolute; top: 1rem; right: 1rem; z-index: 2; padding: 0.35rem 0.7rem; font-size: 0.75rem;
+    color: var(--text); background: rgba(5, 8, 16, 0.75); border: 1px solid var(--border-hi);
+  }
+  .cover-title { position: absolute; z-index: 1; left: clamp(1.25rem, 4vw, 3rem); right: clamp(1.25rem, 4vw, 3rem); bottom: clamp(1.25rem, 4vw, 2.5rem); pointer-events: none; }
+  .cover.empty .cover-title { position: relative; left: 0; right: 0; bottom: 0; padding: 4rem clamp(1.25rem, 4vw, 3rem) 2rem; }
+  h1 { font-size: clamp(2.6rem, 8vw, 5.5rem); line-height: 0.95; color: var(--text); }
+
+  /* Body: sticky spec sheet + readable column */
+  .body { display: grid; grid-template-columns: 260px minmax(0, 1fr); gap: 4rem; align-items: start; margin-top: 3.5rem; }
+  .spec { position: sticky; top: 7rem; }
+  dl { display: grid; gap: 1.5rem; margin: 0 0 2rem; }
+  dt { margin-bottom: 0.4rem; font-family: var(--font-mono); font-size: 0.75rem; letter-spacing: 0.06em; color: var(--text-dim); }
+  dd { margin: 0; color: var(--text); }
+  .tags { display: flex; flex-wrap: wrap; gap: 0.4rem; margin: 0; padding: 0; list-style: none; }
+  .tags li { padding: 0.25rem 0.6rem; font-family: var(--font-mono); font-size: 0.75rem; color: var(--text-muted); border: 1px solid var(--border-hi); border-radius: 2px; }
+  .cta {
+    display: inline-block; padding: 0.7rem 1.2rem; font-family: var(--font-mono); font-size: 0.85rem;
+    color: var(--accent); border: 1px solid var(--accent); transition: background 0.2s, color 0.2s;
+  }
+  .cta:hover { background: var(--accent); color: var(--black); }
+
+  .lead { max-width: 34em; margin: 0 0 2.5rem; font-size: clamp(1.2rem, 2.2vw, 1.5rem); line-height: 1.5; color: var(--text); }
+  .content :global(h2) { margin: 3rem 0 1rem; padding-top: 1.5rem; font-size: 1.9rem; border-top: 1px solid var(--border); }
+  .content :global(p) { max-width: 40em; font-size: 1.05rem; line-height: 1.8; color: var(--text-muted); }
+  .content :global(ul) { max-width: 40em; margin: 0; padding: 0; list-style: none; }
+  .content :global(li) { position: relative; margin-bottom: 0.6rem; padding-left: 1.5rem; font-size: 1.05rem; line-height: 1.8; color: var(--text-muted); }
+  .content :global(li)::before { content: ''; position: absolute; left: 0; top: 0.95em; width: 0.7rem; height: 1px; background: var(--accent); }
+  .content :global(strong) { color: var(--text); }
+  .content :global(a) { color: var(--accent); text-decoration: underline; text-underline-offset: 3px; }
+  .content :global(code) { padding: 0.1em 0.35em; font-family: var(--font-mono); font-size: 0.9em; background: var(--surface-2); }
+
+  /* Screenshots */
+  .shots { margin-top: 5rem; }
+  .shots h2 { margin-bottom: 1.5rem; font-size: 1.9rem; }
+  .shots ul { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 1rem; margin: 0; padding: 0; list-style: none; }
+  .shots button { display: block; width: 100%; padding: 0; overflow: hidden; background: var(--surface-2); border: 1px solid var(--border-hi); transition: border-color 0.2s; }
+  .shots button:hover { border-color: var(--accent); }
+  .shots img { width: 100%; aspect-ratio: 16 / 10; object-fit: cover; }
+
+  /* Prev / next */
+  .pager { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-top: 5rem; padding-top: 2rem; border-top: 1px solid var(--border); }
+  .pager a { display: grid; gap: 0.4rem; padding: 0.5rem 0; }
+  .pager .next { text-align: right; }
+  .pager .mono { font-size: 0.75rem; color: var(--text-dim); }
+  .pager strong { font-family: var(--font-display); font-size: clamp(1.4rem, 3vw, 2rem); font-weight: 400; letter-spacing: 0.04em; transition: color 0.2s; }
+  .pager a:hover strong { color: var(--accent); }
+
+  /* Lightbox (z-index stays below the custom cursor at 9999) */
+  .lightbox { position: fixed; inset: 0; z-index: 500; display: flex; align-items: center; justify-content: center; padding: 4rem 1rem; background: rgba(5, 8, 16, 0.95); }
+  .lightbox[hidden] { display: none; }
+  .lightbox img { max-width: min(1200px, 100%); max-height: 100%; object-fit: contain; }
+  .lb-close, .lb-nav { position: absolute; padding: 0.6rem 1rem; color: var(--text); background: none; border: 1px solid var(--border-hi); transition: border-color 0.2s; }
+  .lb-close:hover, .lb-nav:hover { border-color: var(--accent); }
+  .lb-close { top: 1rem; right: 1rem; font-size: 0.8rem; }
+  .lb-nav { top: 50%; transform: translateY(-50%); font-size: 1.5rem; line-height: 1; }
+  .lb-prev { left: 1rem; }
+  .lb-next { right: 1rem; }
+  .lb-count { position: absolute; bottom: 1rem; left: 50%; transform: translateX(-50%); font-size: 0.8rem; color: var(--text-muted); }
+
+  a:focus-visible, button:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
+  .cover-btn:focus-visible { outline-offset: -4px; }
+
+  @media (max-width: 860px) {
+    .page { padding: 7rem 20px 4rem; }
+    .body { grid-template-columns: 1fr; gap: 2.5rem; }
+    .spec { position: static; }
+    dl { grid-template-columns: repeat(2, 1fr); }
+    .stack { grid-column: 1 / -1; }
+  }
 </style>
