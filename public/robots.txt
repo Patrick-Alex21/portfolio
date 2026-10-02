@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://patrickalexander-dev.netlify.app/sitemap-index.xml
+Sitemap: https://patrick-alexander.dev/sitemap-index.xml

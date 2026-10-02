@@ -6,7 +6,7 @@ const isNetlifyBuild =
   process.env.NETLIFY === 'true' || Boolean(process.env.CONTEXT);
 
 export default defineConfig({
-  site: 'https://patrickalexander-dev.netlify.app',
+  site: 'https://patrick-alexander.dev',
   build: { inlineStylesheets: 'always' },
   integrations: [sitemap()],
   ...(isNetlifyBuild ? { adapter: netlify() } : {}),
