@@ -32,7 +32,9 @@ const categories = ['All', 'Game Development', 'Web Development'];
         >
           <div class="card-thumb">
             <img
-              src={project.data.images[0]}
+              src={project.data.images[0].replace('/projects/', '/projects/thumbs/')}
+              width="870"
+              height="488"
               alt={project.data.title}
               loading="lazy"
               decoding="async"
