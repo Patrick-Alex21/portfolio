@@ -10,8 +10,8 @@ interface Props {
 }
 
 const {
-  title = 'Patrick Alexander — Portfolio',
-  description = 'Game Developer in Samarinda / Surabaya, Indonesia, specializing in Unity, Unreal Engine, game design, and interactive experiences.',
+  title = 'Patrick Alexander — Dev Portfolio',
+  description = 'Game Developer, specializing in Unity and Unreal Engine, game design, and interactive experiences.',
 } = Astro.props;
 
 const canonical = new URL(Astro.url.pathname, Astro.site).href;
@@ -32,10 +32,10 @@ const personSchema = {
   jobTitle: 'Game Developer and QA Specialist',
   image: 'https://patrick-alexander.dev/Thumbnail.jpg',
   description:
-    'Game Developer specializing in Unity C# and Unreal Engine. Based in Indonesia. Open to full-time opportunities in game development and QA.',
+    'Game Developer specializing in Unity C# and Unreal Engine. Open to full-time opportunities in game development and QA.',
   sameAs: [
     'https://linkedin.com/in/patrick-alexander21',
-    'https://github.com/seryxss',
+    'https://github.com/Patrick-Alex21',
     'https://itch.io/profile/seryxss',
   ],
   homeLocation: {
@@ -79,7 +79,6 @@ const personSchema = {
     <meta property="twitter:description" content={description} />
     <meta property="twitter:image" content="https://patrick-alexander.dev/Thumbnail.jpg" />
     <meta name="description" content={description} />
-    <meta name="keywords" content="game developer, unity, unreal engine, game programmer, QA, game design" />
     <meta name="author" content="Patrick Alexander" />
     <meta name="robots" content="index, follow" />
     <link rel="icon" type="image/png" sizes="192x192" href="/icon.png" />
