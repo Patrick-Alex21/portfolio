@@ -1,2 +1,1 @@
-https://netlify.app  https://patrick-alexander.dev  301!
-https://netlify.app*  https://patrick-alexander.dev:splat  301!
+https://patrickalexander-dev.netlify.app/*  https://patrick-alexander.dev/:splat  301!
