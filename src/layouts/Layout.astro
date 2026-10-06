@@ -96,16 +96,16 @@ const personSchema = {
 
     <!-- Google Analytics -->
     <script is:inline>
+    addEventListener('load', () => setTimeout(() => {
+      const s = document.createElement('script');
+      s.src = 'https://www.googletagmanager.com/gtag/js?id=G-GVC7WXFKFT';
+      document.head.appendChild(s);
       window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
+      function gtag(){dataLayer.push(arguments)}
       gtag('js', new Date());
       gtag('config', 'G-GVC7WXFKFT');
-      addEventListener('load', () => setTimeout(() => {
-        const s = document.createElement('script');
-        s.src = 'https://www.googletagmanager.com/gtag/js?id=G-GVC7WXFKFT';
-        document.head.appendChild(s);
-      }, 2000));
-    </script>
+    }, 2000));
+  </script>
   </head>
 
   <body>
