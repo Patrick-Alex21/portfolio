@@ -80,7 +80,7 @@ const personSchema = {
     <meta name="twitter:image" content="https://patrick-alexander.dev/Thumbnail.png">
     <meta name="description" content={description} />
     <meta name="author" content="Patrick Alexander" />
-    <meta name="robots" content="index, follow" />
+    <meta name="robots" content="index, follow, max-image-preview:none">
     <link rel="icon" type="image/png" sizes="192x192" href="/icon.png" />
     <link rel="canonical" href={canonical} />
     <title>{title}</title>
@@ -168,12 +168,8 @@ const personSchema = {
       const observer = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
           if (entry.isIntersecting) {
-            // SPAWN: Add the class when it hits the screen
             entry.target.classList.add('spawned');
-          } else {
-            // UNREVEAL: Remove it when it leaves the screen
-            // This is what makes it reset like your skill bars
-            entry.target.classList.remove('spawned');
+            observer.unobserve(entry.target);
           }
         });
       }, { 
