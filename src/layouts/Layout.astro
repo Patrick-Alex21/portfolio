@@ -3,6 +3,7 @@ import { Font } from 'astro:assets';
 import '../styles/global.css';
 import Nav from '../components/Nav.astro';
 import Footer from '../components/Footer.astro';
+import Loader from '../components/Loader.astro';
 
 interface Props {
   title?: string;
@@ -109,6 +110,7 @@ const personSchema = {
   </head>
 
   <body>
+    <Loader />
     <!-- Custom Cursor -->
     <div class="cursor" id="cursor-dot"  style="position:fixed;top:0;left:0;z-index:9999;pointer-events:none;">
       <div class="cursor-dot"></div>

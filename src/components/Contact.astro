@@ -294,6 +294,7 @@ const contactLinks = [
   }
   .cl-value {
     font-size: 15px;
+    overflow-wrap: anywhere;
     color: var(--text-muted);
     transition: color 0.2s;
   }
@@ -330,6 +331,6 @@ const contactLinks = [
   }
 
   @media (max-width: 900px) {
-    .contact-top { grid-template-columns: 1fr; gap: 48px; }
+    .contact-top { grid-template-columns: minmax(0, 1fr); gap: 48px; }
   }
 </style>

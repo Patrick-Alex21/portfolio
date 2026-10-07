@@ -1,0 +1,32 @@
+<div id="loader" aria-hidden="true">
+  <span class="loader-logo"><span class="b">[</span>PA<span class="b">]</span></span>
+  <span id="loader-pct">0%</span>
+  <div class="bar"><div id="loader-bar"></div></div>
+</div>
+
+<script is:inline>
+  const l = document.getElementById('loader');
+  if (sessionStorage.getItem('seen')) l.remove();
+  else {
+    sessionStorage.setItem('seen', '1');
+    const p = document.getElementById('loader-pct'), b = document.getElementById('loader-bar'), t0 = performance.now();
+    (function tick(t) {
+      const n = Math.min((t - t0) / 2000, 1);
+      p.textContent = Math.round(n * 100) + '%';
+      b.style.width = n * 100 + '%';
+      n < 1 ? requestAnimationFrame(tick) : (l.classList.add('done'), setTimeout(() => l.remove(), 500));
+    })(t0);
+  }
+</script>
+
+<style>
+  #loader { position: fixed; inset: 0; z-index: 10000; display: flex; flex-direction: column;
+    align-items: center; justify-content: center; gap: 16px; background: var(--black);
+    transition: opacity 0.5s ease; }
+  #loader.done { opacity: 0; pointer-events: none; }
+  .loader-logo { font-family: var(--font-display); font-size: 56px; letter-spacing: 0.05em; color: var(--text); }
+  .b { color: var(--accent); }
+  #loader-pct { font-family: var(--font-mono); font-size: 13px; letter-spacing: 0.2em; color: var(--text-muted); }
+  .bar { width: 200px; height: 2px; background: var(--border-hi); }
+  #loader-bar { height: 100%; width: 0; background: var(--accent); box-shadow: 0 0 8px var(--accent); }
+</style>

@@ -40,7 +40,7 @@ const navLinks = [
       {navLinks.map((link) => (
         <li><a href={link.href} class="mobile-link">{link.label}</a></li>
       ))}
-      <li><a href="mailto:patrick.alexander1121@gmail.com" class="mobile-link text-accent">Hire Me →</a></li>
+      <li><a href="mailto:patrick.alexander1121@gmail.com" class="mobile-link mobile-cta">Hire Me</a></li>
       <div class="mobile-socials">
         <a href="https://linkedin.com/in/patrick-alexander" target="_blank" class="social-icon" aria-label="LinkedIn">
           <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
@@ -83,7 +83,6 @@ const navLinks = [
     letter-spacing: 0.05em;
     color: var(--text);
     transition: color 0.2s;
-    padding-left: 18px;
   }
   .nav-logo:hover { color: var(--accent); }
   .logo-bracket { color: var(--accent); }
@@ -95,7 +94,7 @@ const navLinks = [
   }
   .nav-link {
     font-family: var(--font-mono);
-    font-size: 12px;
+    font-size: 13px;
     letter-spacing: 0.08em;
     text-transform: uppercase;
     color: var(--text-muted);
@@ -114,7 +113,7 @@ const navLinks = [
 
   .nav-cta {
     font-family: var(--font-mono);
-    font-size: 12px;
+    font-size: 13px;
     letter-spacing: 0.1em;
     text-transform: uppercase;
     color: var(--black);
@@ -187,6 +186,16 @@ const navLinks = [
     transition: color 0.2s;
   }
   .mobile-link:hover { color: var(--accent); }
+  .mobile-link.mobile-cta {
+    margin-top: 20px;
+    text-align: center;
+    color: var(--black);
+    background: var(--accent);
+    border-radius: 4px;
+    border-bottom: none;
+    font-weight: 500;
+  }
+  .mobile-link.mobile-cta:hover { color: var(--black); opacity: 0.85; }
 
   .mobile-socials {
     display: none; 
